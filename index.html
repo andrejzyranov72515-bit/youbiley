@@ -116,32 +116,31 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        
+        // Убираем импорт Auth, если он не настроен в консоли Firebase
+        // import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-        // ВСТАВЬТЕ СВОИ ДАННЫЕ СЮДА:
         const firebaseConfig = {
              apiKey: "AIzaSyCUJv8DeuYYeKB5YT680QWyfFwzfUjWFko",
              authDomain: "yubiley-a0d93.firebaseapp.com",
              projectId: "yubiley-a0d93",
              storageBucket: "yubiley-a0d93.firebasestorage.app",
              messagingSenderId: "291687867113",
-             appId: "1:291687867113:web:feeab4057f0ca834d78678",
-             measurementId: "G-E3QHVDJPXY"
+             appId: "1:291687867113:web:feeab4057f0ca834d78678"
         };
 
-        const finalConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : firebaseConfig;
-        const currentAppId = typeof __app_id !== 'undefined' ? __app_id : 'my-app-id';
-
-        let db, auth;
+        let db;
         try {
-            const app = initializeApp(finalConfig);
+            const app = initializeApp(firebaseConfig);
             db = getFirestore(app);
-            auth = getAuth(app);
-            signInAnonymously(auth);
-        } catch (e) { console.error("Firebase error"); }
+            // Убираем анонимный вход, так как правила базы (if true) позволяют работать без него
+            // const auth = getAuth(app);
+            // signInAnonymously(auth);
+        } catch (e) { console.error("Firebase init error", e); }
 
         window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.getElementById(id).classList.remove('active');
+        
         window.toggleChildrenInput = () => {
             const val = document.getElementById('guest-type').value;
             document.getElementById('children-count-wrapper').style.display = val === 'С семьей' ? 'block' : 'none';
@@ -163,7 +162,7 @@
             btn.innerText = 'Загрузка...';
 
             try {
-                const colRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'guests');
+                const colRef = collection(db, 'guests');
                 await addDoc(colRef, {
                     name: document.getElementById('guest-name').value,
                     type: document.getElementById('guest-type').value,
@@ -173,7 +172,8 @@
                 document.getElementById('form-container-div').classList.add('hidden');
                 document.getElementById('success-container-div').classList.remove('hidden');
             } catch (err) {
-                alert("Ошибка! Проверьте ключи Firebase в коде.");
+                console.error("Ошибка при сохранении:", err);
+                alert("Ошибка связи с базой данных. Убедитесь, что правила (Rules) опубликованы.");
                 btn.disabled = false;
                 btn.innerText = 'Подтвердить';
             }
@@ -184,15 +184,18 @@
             const tbody = document.querySelector('#guests-list tbody');
             tbody.innerHTML = '<tr><td colspan="3">Загрузка...</td></tr>';
             try {
-                const colRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'guests');
+                const colRef = collection(db, 'guests');
                 const snap = await getDocs(colRef);
                 tbody.innerHTML = '';
                 snap.forEach(doc => {
                     const d = doc.data();
                     tbody.innerHTML += `<tr><td>${d.name}</td><td>${d.type}</td><td>${d.children}</td></tr>`;
                 });
-                if (snap.empty) tbody.innerHTML = '<tr><td colspan="3">Пусто</td></tr>';
-            } catch (err) { tbody.innerHTML = '<tr><td colspan="3">Ошибка доступа</td></tr>'; }
+                if (snap.empty) tbody.innerHTML = '<tr><td colspan="3">Гостей пока нет</td></tr>';
+            } catch (err) { 
+                console.error(err);
+                tbody.innerHTML = '<tr><td colspan="3">Ошибка доступа к БД</td></tr>'; 
+            }
         }
 
         window.onclick = (e) => { if (e.target.classList.contains('modal')) closeModal(e.target.id); };
