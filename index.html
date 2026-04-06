@@ -5,30 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Юбилей Сашеньки - 45 годиков</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background-color: #000; color: white; overflow-x: hidden; }
-        .bg-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.95)), url('https://i.ibb.co/t0FYk5R/DSC-0088.jpg'); background-size: cover; background-position: center; filter: blur(25px); transform: scale(1.1); }
+        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background-color: #050505; color: white; overflow-x: hidden; }
+        
+        /* Глобальная фоновая анимация (за картой) */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+        }
+
+        .bg-image-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -2; 
+            background: url('https://i.ibb.co/t0FYk5R/DSC-0088.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            filter: blur(40px) brightness(0.2); 
+            opacity: 0.5;
+        }
+
+        /* АНИМАЦИЯ ЦЕНТРАЛЬНОЙ КАРТОЧКИ */
+        @keyframes card-glow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .main-card-animated {
+            background: linear-gradient(-45deg, 
+                rgba(10, 10, 10, 0.9), 
+                rgba(30, 25, 0, 0.85), 
+                rgba(15, 15, 15, 0.9), 
+                rgba(40, 35, 5, 0.85)
+            );
+            background-size: 300% 300%;
+            animation: card-glow 15s ease infinite;
+            backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255, 215, 0, 0.2); 
+            border-radius: 40px; 
+            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 1), 0 0 30px rgba(184, 134, 11, 0.1); 
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Анимация пульсации сердца */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.15); }
+            70% { transform: scale(1); }
+        }
+
+        .heart-icon {
+            display: inline-block;
+            color: #fbbf24;
+            animation: heartbeat 1.5s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
+        }
+
+        /* Добавляем легкое мерцание звезд внутри самой карты */
+        .main-card-animated::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
         .hero-image-container { box-shadow: 0 0 30px rgba(0,0,0,0.8); border: 3px solid rgba(255, 215, 0, 0.6); background: #2a2a2a; position: relative; overflow: hidden; }
         .zoomed-photo { width: 100%; height: 100%; object-fit: cover; transform: scale(1.25); object-position: calc(50% + 10px) 25%; }
         .title-font { font-family: 'Marck Script', cursive; }
         .gold-text { background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-        .glass-card { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 40px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8); }
-        .modal { display: none; position: fixed; inset: 0; z-index: 50; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 1rem; }
+
+        /* Оживленный инфо-блок (внутренний) */
+        .animated-info-bg {
+            background: linear-gradient(-45deg, #000000, #1a1600, #0a0a0a);
+            background-size: 200% 200%;
+            animation: card-glow 8s ease infinite;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 50; 
+            background: rgba(0, 0, 0, 0.7); 
+            backdrop-filter: blur(25px); 
+            align-items: center; 
+            justify-content: center; 
+            padding: 1rem; 
+        }
         .modal.active { display: flex; }
-        .input-field { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 0.75rem; border-radius: 12px; width: 100%; outline: none; transition: all 0.3s; }
+        
+        /* Поля ввода */
+        .input-field { 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            color: white; 
+            padding: 0.85rem; 
+            border-radius: 12px; 
+            width: 100%; 
+            outline: none; 
+        }
+        
+        /* Исправление отображения списка */
+        select.input-field {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='gold'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2rem;
+            padding-right: 2.5rem;
+        }
+        
+        .input-field option {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 10px;
+        }
+
         .input-field:focus { border-color: #eab308; background: rgba(255, 255, 255, 0.15); }
+        
         @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
         .animate-content { animation: zoomIn 0.8s ease-out forwards; }
+        
         #children-count-wrapper { display: none; }
         .admin-table { width: 100%; border-collapse: collapse; color: white; font-size: 0.8rem; }
-        .admin-table th, .admin-table td { padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .admin-table th, .admin-table td { padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .delete-btn { color: #ef4444; cursor: pointer; }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4 md:p-6">
-    <div class="bg-container"></div>
+    <div class="bg-image-overlay"></div>
+    <canvas id="bg-canvas"></canvas>
 
-    <div class="max-w-md w-full glass-card p-6 md:p-8 text-center animate-content">
+    <!-- Основная АНИМИРОВАННАЯ карточка -->
+    <div class="max-w-md w-full main-card-animated p-6 md:p-8 text-center animate-content relative z-10">
         <h1 class="text-3xl md:text-4xl title-font mb-2 gold-text leading-tight">У Сашеньки юбилей!</h1>
         <div class="mb-6"><span class="text-5xl md:text-6xl font-extrabold gold-text tracking-tight">45 годиков</span></div>
         
@@ -38,26 +165,27 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 text-white bg-black/40 p-5 rounded-2xl border border-white/5">
+        <!-- Инфо-блок -->
+        <div class="grid grid-cols-1 gap-4 text-white animated-info-bg p-5 rounded-3xl shadow-2xl">
             <div class="flex flex-col items-center justify-center border-b border-white/10 pb-3">
-                <p class="text-[10px] text-yellow-400 uppercase">Когда</p>
+                <p class="text-[10px] text-yellow-400 uppercase tracking-widest font-bold">Когда</p>
                 <p class="text-xl font-bold">06.06.2026</p>
                 <p class="text-base font-light opacity-80">Начало в 16:30</p>
             </div>
             <div class="flex flex-col items-center justify-center pt-1">
-                <p class="text-[10px] text-yellow-400 uppercase">Где</p>
+                <p class="text-[10px] text-yellow-400 uppercase tracking-widest font-bold">Где</p>
                 <p class="text-lg font-bold uppercase">Банкет холл "Мишель"</p>
                 <p class="text-sm opacity-70 italic font-light">ул. Ленина 154А</p>
             </div>
         </div>
 
-        <div class="mt-6">
-            <button onclick="openModal('rsvp-modal')" class="w-full px-8 py-3 bg-yellow-500 text-black font-black uppercase tracking-widest rounded-xl transition-all hover:bg-yellow-400 shadow-lg active:scale-95 text-xs">
+        <div class="mt-8">
+            <button onclick="openModal('rsvp-modal')" class="w-full px-8 py-4 bg-yellow-500 text-black font-black uppercase tracking-widest rounded-2xl transition-all hover:bg-yellow-400 shadow-[0_10px_30px_rgba(234,179,8,0.4)] active:scale-95 text-xs">
                 Пойти
             </button>
         </div>
 
-        <button onclick="openModal('auth-modal')" class="mt-8 opacity-20 hover:opacity-100 transition-opacity">
+        <button onclick="openModal('auth-modal')" class="mt-8 opacity-20 hover:opacity-100 transition-opacity p-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
             </svg>
@@ -66,20 +194,20 @@
 
     <!-- Модалки -->
     <div id="auth-modal" class="modal">
-        <div class="max-w-xs w-full glass-card p-6 text-center relative border border-white/20">
-            <button onclick="closeModal('auth-modal')" class="absolute top-4 right-4 text-white/50">✕</button>
+        <div class="max-w-xs w-full main-card-animated p-6 text-center relative border border-yellow-500/10">
+            <button onclick="closeModal('auth-modal')" class="absolute top-4 right-4 text-white/50 hover:text-white">✕</button>
             <h2 class="text-xl font-bold mb-4 gold-text">Вход для именинника</h2>
             <input type="password" id="admin-password" placeholder="Пароль" class="input-field mb-4 text-center">
-            <button onclick="checkAdminPassword()" class="w-full py-2 bg-yellow-500 text-black font-bold rounded-lg">Войти</button>
+            <button onclick="checkAdminPassword()" class="w-full py-2 bg-yellow-500 text-black font-bold rounded-lg shadow-lg">Войти</button>
             <p id="auth-error" class="text-red-400 text-xs mt-2 hidden">Неверный пароль</p>
         </div>
     </div>
 
     <div id="rsvp-modal" class="modal">
-        <div class="max-w-sm w-full glass-card p-8 text-center relative border-2 border-yellow-500/30">
-            <button onclick="closeModal('rsvp-modal')" class="absolute top-4 right-4 text-white/50">✕</button>
+        <div class="max-w-sm w-full main-card-animated p-8 text-center relative border border-yellow-500/20">
+            <button onclick="closeModal('rsvp-modal')" class="absolute top-4 right-4 text-white/50 hover:text-white">✕</button>
             <div id="form-container-div">
-                <h2 class="text-2xl title-font gold-text mb-6">Вы придете?</h2>
+                <h2 class="text-2xl title-font gold-text mb-6 leading-tight">Посетите именинника?</h2>
                 <form id="rsvp-form" class="space-y-4">
                     <input type="text" id="guest-name" placeholder="Ваше имя" class="input-field" required>
                     <select id="guest-type" class="input-field" onchange="toggleChildrenInput()">
@@ -90,23 +218,32 @@
                     <div id="children-count-wrapper">
                         <input type="number" id="children-count" min="1" max="10" placeholder="Сколько детей?" class="input-field mt-4">
                     </div>
-                    <button type="submit" id="submit-btn" class="w-full py-3 bg-yellow-500 text-black font-bold uppercase tracking-widest rounded-xl">Подтвердить</button>
+                    <button type="submit" id="submit-btn" class="w-full py-4 bg-yellow-500 text-black font-bold uppercase tracking-widest rounded-xl shadow-lg mt-2 transition-all active:scale-95">Подтвердить</button>
                 </form>
             </div>
             <div id="success-container-div" class="py-10 hidden animate-content">
-                <div class="text-5xl mb-6">❤️</div>
+                <div class="heart-icon text-7xl mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                    </svg>
+                </div>
                 <h2 class="text-3xl title-font gold-text mb-4">Ждем вас!</h2>
+                <p class="text-sm opacity-60">Спасибо за подтверждение</p>
             </div>
         </div>
     </div>
 
     <div id="admin-modal" class="modal">
-        <div class="max-w-lg w-full glass-card p-6 relative border border-white/20">
+        <div class="max-w-xl w-full main-card-animated p-6 relative">
             <button onclick="closeModal('admin-modal')" class="absolute top-4 right-4 text-white/50">✕</button>
             <h2 class="text-xl font-bold mb-4 gold-text">Список гостей</h2>
-            <div class="overflow-y-auto max-h-[60vh]">
+            <div class="overflow-y-auto max-h-[60vh] rounded-2xl bg-black/40">
                 <table class="admin-table" id="guests-list">
-                    <thead><tr><th>Имя</th><th>Формат</th><th>Дети</th></tr></thead>
+                    <thead class="bg-white/5">
+                        <tr>
+                            <th>Имя</th><th>Формат</th><th>Дети</th><th class="w-10"></th>
+                        </tr>
+                    </thead>
                     <tbody></tbody>
                 </table>
             </div>
@@ -115,11 +252,8 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         
-        // Убираем импорт Auth, если он не настроен в консоли Firebase
-        // import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-
         const firebaseConfig = {
              apiKey: "AIzaSyCUJv8DeuYYeKB5YT680QWyfFwzfUjWFko",
              authDomain: "yubiley-a0d93.firebaseapp.com",
@@ -129,41 +263,85 @@
              appId: "1:291687867113:web:feeab4057f0ca834d78678"
         };
 
-        let db;
-        try {
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            // Убираем анонимный вход, так как правила базы (if true) позволяют работать без него
-            // const auth = getAuth(app);
-            // signInAnonymously(auth);
-        } catch (e) { console.error("Firebase init error", e); }
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
+        // --- ФОНОВЫЕ ЧАСТИЦЫ ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+        window.addEventListener('resize', resize); resize();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5;
+                this.speedY = Math.random() * 0.4 + 0.1;
+                this.speedX = (Math.random() - 0.5) * 0.15;
+                this.opacity = Math.random() * 0.6 + 0.1;
+            }
+            update() { this.y -= this.speedY; if (this.y < -10) this.reset(); }
+            draw() {
+                ctx.fillStyle = `rgba(218, 165, 32, ${this.opacity})`;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+
+        const initParticles = () => { for (let i = 0; i < 100; i++) particles.push(new Particle()); };
+        const animateBg = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateBg);
+        };
+        initParticles(); animateBg();
+
+        // --- САЛЮТ ---
+        window.fireFireworks = () => {
+            const duration = 6 * 1000;
+            const animationEnd = Date.now() + duration;
+            const interval = setInterval(() => {
+                const timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                confetti({ particleCount: 40, origin: { x: Math.random(), y: Math.random() - 0.2 }, startVelocity: 30 });
+            }, 300);
+        };
+
+        // --- ФУНКЦИИ ---
         window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.getElementById(id).classList.remove('active');
-        
         window.toggleChildrenInput = () => {
-            const val = document.getElementById('guest-type').value;
-            document.getElementById('children-count-wrapper').style.display = val === 'С семьей' ? 'block' : 'none';
+            document.getElementById('children-count-wrapper').style.display = document.getElementById('guest-type').value === 'С семьей' ? 'block' : 'none';
+        };
+        window.checkAdminPassword = () => {
+            if (document.getElementById('admin-password').value === "1234") { closeModal('auth-modal'); renderAdmin(); }
+            else { document.getElementById('auth-error').classList.remove('hidden'); }
         };
 
-        window.checkAdminPassword = () => {
-            if (document.getElementById('admin-password').value === "1234") {
-                closeModal('auth-modal');
-                renderAdmin();
-            } else {
-                document.getElementById('auth-error').classList.remove('hidden');
-            }
-        };
+        async function renderAdmin() {
+            openModal('admin-modal');
+            const tbody = document.querySelector('#guests-list tbody');
+            tbody.innerHTML = '<tr><td colspan="4" class="text-center py-8 opacity-50">Загрузка...</td></tr>';
+            try {
+                const snap = await getDocs(collection(db, 'guests'));
+                tbody.innerHTML = '';
+                snap.forEach(gDoc => {
+                    const d = gDoc.data();
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${d.name}</td><td>${d.type}</td><td>${d.children}</td><td><span class="delete-btn">✕</span></td>`;
+                    tr.querySelector('.delete-btn').onclick = async () => { if(confirm('Удалить?')){ await deleteDoc(doc(db, "guests", gDoc.id)); renderAdmin(); } };
+                    tbody.appendChild(tr);
+                });
+            } catch (err) { tbody.innerHTML = '<tr><td colspan="4">Ошибка</td></tr>'; }
+        }
 
         document.getElementById('rsvp-form').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = true;
-            btn.innerText = 'Загрузка...';
-
+            const btn = document.getElementById('submit-btn'); btn.disabled = true; btn.innerText = '...';
             try {
-                const colRef = collection(db, 'guests');
-                await addDoc(colRef, {
+                await addDoc(collection(db, 'guests'), {
                     name: document.getElementById('guest-name').value,
                     type: document.getElementById('guest-type').value,
                     children: document.getElementById('children-count').value || 0,
@@ -171,32 +349,9 @@
                 });
                 document.getElementById('form-container-div').classList.add('hidden');
                 document.getElementById('success-container-div').classList.remove('hidden');
-            } catch (err) {
-                console.error("Ошибка при сохранении:", err);
-                alert("Ошибка связи с базой данных. Убедитесь, что правила (Rules) опубликованы.");
-                btn.disabled = false;
-                btn.innerText = 'Подтвердить';
-            }
+                window.fireFireworks();
+            } catch (err) { alert("Ошибка"); btn.disabled = false; btn.innerText = 'Подтвердить'; }
         };
-
-        async function renderAdmin() {
-            openModal('admin-modal');
-            const tbody = document.querySelector('#guests-list tbody');
-            tbody.innerHTML = '<tr><td colspan="3">Загрузка...</td></tr>';
-            try {
-                const colRef = collection(db, 'guests');
-                const snap = await getDocs(colRef);
-                tbody.innerHTML = '';
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    tbody.innerHTML += `<tr><td>${d.name}</td><td>${d.type}</td><td>${d.children}</td></tr>`;
-                });
-                if (snap.empty) tbody.innerHTML = '<tr><td colspan="3">Гостей пока нет</td></tr>';
-            } catch (err) { 
-                console.error(err);
-                tbody.innerHTML = '<tr><td colspan="3">Ошибка доступа к БД</td></tr>'; 
-            }
-        }
 
         window.onclick = (e) => { if (e.target.classList.contains('modal')) closeModal(e.target.id); };
     </script>
