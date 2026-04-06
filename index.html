@@ -7,173 +7,56 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: #000;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        .bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.95)), url('https://i.ibb.co/t0FYk5R/DSC-0088.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: blur(25px);
-            transform: scale(1.1);
-        }
-
-        .hero-image-container {
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-            border: 3px solid rgba(255, 215, 0, 0.6);
-            background: #2a2a2a;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .zoomed-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.25); 
-            object-position: calc(50% + 10px) 25%; 
-        }
-
-        .title-font {
-            font-family: 'Marck Script', cursive;
-        }
-
-        .gold-text {
-            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 50;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .input-field {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.75rem;
-            border-radius: 12px;
-            width: 100%;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        .input-field:focus {
-            border-color: #eab308;
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .animate-content {
-            animation: zoomIn 0.8s ease-out forwards;
-        }
-
-        #children-count-wrapper {
-            display: none;
-        }
-
-        #children-count-wrapper.visible {
-            display: block;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-            color: white;
-            font-size: 0.8rem;
-        }
-
-        .admin-table th, .admin-table td {
-            padding: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            text-align: left;
-        }
+        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background-color: #000; color: white; overflow-x: hidden; }
+        .bg-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.95)), url('https://i.ibb.co/t0FYk5R/DSC-0088.jpg'); background-size: cover; background-position: center; filter: blur(25px); transform: scale(1.1); }
+        .hero-image-container { box-shadow: 0 0 30px rgba(0,0,0,0.8); border: 3px solid rgba(255, 215, 0, 0.6); background: #2a2a2a; position: relative; overflow: hidden; }
+        .zoomed-photo { width: 100%; height: 100%; object-fit: cover; transform: scale(1.25); object-position: calc(50% + 10px) 25%; }
+        .title-font { font-family: 'Marck Script', cursive; }
+        .gold-text { background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .glass-card { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 40px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8); }
+        .modal { display: none; position: fixed; inset: 0; z-index: 50; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 1rem; }
+        .modal.active { display: flex; }
+        .input-field { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 0.75rem; border-radius: 12px; width: 100%; outline: none; transition: all 0.3s; }
+        .input-field:focus { border-color: #eab308; background: rgba(255, 255, 255, 0.15); }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .animate-content { animation: zoomIn 0.8s ease-out forwards; }
+        #children-count-wrapper { display: none; }
+        .admin-table { width: 100%; border-collapse: collapse; color: white; font-size: 0.8rem; }
+        .admin-table th, .admin-table td { padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left; }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4 md:p-6">
     <div class="bg-container"></div>
 
-    <!-- Основная карточка -->
     <div class="max-w-md w-full glass-card p-6 md:p-8 text-center animate-content">
         <h1 class="text-3xl md:text-4xl title-font mb-2 gold-text leading-tight">У Сашеньки юбилей!</h1>
-
-        <div class="mb-6">
-            <span class="text-5xl md:text-6xl font-extrabold gold-text tracking-tight">45 годиков</span>
-        </div>
-
+        <div class="mb-6"><span class="text-5xl md:text-6xl font-extrabold gold-text tracking-tight">45 годиков</span></div>
+        
         <div class="relative inline-block mb-8 w-full px-8">
             <div class="w-full max-w-[280px] aspect-square rounded-2xl hero-image-container mx-auto">
                 <img src="https://i.ibb.co/t0FYk5R/DSC-0088.jpg" alt="Именинник" class="zoomed-photo">
             </div>
-            <div class="absolute -top-3 right-[15%] text-4xl transform rotate-12 drop-shadow-lg">🥳</div>
-            <div class="absolute -bottom-3 left-[15%] text-4xl transform -rotate-12 drop-shadow-lg">✨</div>
         </div>
 
         <div class="grid grid-cols-1 gap-4 text-white bg-black/40 p-5 rounded-2xl border border-white/5">
             <div class="flex flex-col items-center justify-center border-b border-white/10 pb-3">
-                <p class="text-[10px] font-light tracking-[0.3em] text-yellow-400 mb-1 uppercase">Когда</p>
+                <p class="text-[10px] text-yellow-400 uppercase">Когда</p>
                 <p class="text-xl font-bold">06.06.2026</p>
                 <p class="text-base font-light opacity-80">Начало в 16:30</p>
             </div>
             <div class="flex flex-col items-center justify-center pt-1">
-                <p class="text-[10px] font-light tracking-[0.3em] text-yellow-400 mb-1 uppercase">Где</p>
-                <p class="text-lg font-bold leading-tight uppercase">Банкет холл "Мишель"</p>
-                <p class="text-sm opacity-70 italic mt-0.5 font-light">ул. Ленина 154А</p>
+                <p class="text-[10px] text-yellow-400 uppercase">Где</p>
+                <p class="text-lg font-bold uppercase">Банкет холл "Мишель"</p>
+                <p class="text-sm opacity-70 italic font-light">ул. Ленина 154А</p>
             </div>
         </div>
 
         <div class="mt-6">
-            <p class="text-[11px] font-light text-white/60 mb-3 tracking-widest uppercase italic">Приглашаем вас присоединиться</p>
-            <button onclick="openModal('rsvp-modal')" class="group relative w-full px-8 py-3 bg-yellow-500 text-black font-black uppercase tracking-widest rounded-xl transition-all hover:bg-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.3)] active:scale-95 text-xs">
+            <button onclick="openModal('rsvp-modal')" class="w-full px-8 py-3 bg-yellow-500 text-black font-black uppercase tracking-widest rounded-xl transition-all hover:bg-yellow-400 shadow-lg active:scale-95 text-xs">
                 Пойти
             </button>
         </div>
 
-        <!-- Кнопка администратора -->
         <button onclick="openModal('auth-modal')" class="mt-8 opacity-20 hover:opacity-100 transition-opacity">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
@@ -181,79 +64,50 @@
         </button>
     </div>
 
-    <!-- Модальное окно авторизации админки -->
+    <!-- Модалки -->
     <div id="auth-modal" class="modal">
-        <div class="max-w-xs w-full glass-card p-6 text-center relative border-white/20 border">
-            <button onclick="closeModal('auth-modal')" class="absolute top-4 right-4 text-white/50 hover:text-white">✕</button>
+        <div class="max-w-xs w-full glass-card p-6 text-center relative border border-white/20">
+            <button onclick="closeModal('auth-modal')" class="absolute top-4 right-4 text-white/50">✕</button>
             <h2 class="text-xl font-bold mb-4 gold-text">Вход для именинника</h2>
-            <input type="password" id="admin-password" placeholder="Введите пароль" class="input-field mb-4 text-center">
-            <button onclick="checkAdminPassword()" class="w-full py-2 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition-colors">
-                Войти
-            </button>
+            <input type="password" id="admin-password" placeholder="Пароль" class="input-field mb-4 text-center">
+            <button onclick="checkAdminPassword()" class="w-full py-2 bg-yellow-500 text-black font-bold rounded-lg">Войти</button>
             <p id="auth-error" class="text-red-400 text-xs mt-2 hidden">Неверный пароль</p>
         </div>
     </div>
 
-    <!-- Модальное окно анкеты -->
     <div id="rsvp-modal" class="modal">
-        <div class="max-w-sm w-full glass-card p-8 text-center relative border-yellow-500/30 border-2">
-            <button onclick="closeModal('rsvp-modal')" class="absolute top-4 right-4 text-white/50 hover:text-white">✕</button>
-            
+        <div class="max-w-sm w-full glass-card p-8 text-center relative border-2 border-yellow-500/30">
+            <button onclick="closeModal('rsvp-modal')" class="absolute top-4 right-4 text-white/50">✕</button>
             <div id="form-container-div">
-                <h2 class="text-2xl title-font gold-text mb-6">Посетите именинника?</h2>
+                <h2 class="text-2xl title-font gold-text mb-6">Вы придете?</h2>
                 <form id="rsvp-form" class="space-y-4">
-                    <div class="text-left">
-                        <label class="text-[10px] uppercase tracking-wider text-yellow-400 block mb-1 px-1">Ваше имя</label>
-                        <input type="text" id="guest-name" placeholder="Введите имя и фамилию" class="input-field" required>
+                    <input type="text" id="guest-name" placeholder="Ваше имя" class="input-field" required>
+                    <select id="guest-type" class="input-field" onchange="toggleChildrenInput()">
+                        <option value="Один/Одна">Приду один / одна</option>
+                        <option value="С супругом(ой)">С супругом / супругой</option>
+                        <option value="С семьей">С семьей и детьми</option>
+                    </select>
+                    <div id="children-count-wrapper">
+                        <input type="number" id="children-count" min="1" max="10" placeholder="Сколько детей?" class="input-field mt-4">
                     </div>
-                    
-                    <div class="text-left">
-                        <label class="text-[10px] uppercase tracking-wider text-yellow-400 block mb-1 px-1">С кем вы будете?</label>
-                        <select id="guest-type" class="input-field cursor-pointer" onchange="toggleChildrenInput()">
-                            <option value="Один/Одна">Приду один / одна</option>
-                            <option value="С супругом(ой)">С супругом / супругой</option>
-                            <option value="С семьей">С супругом / супругой и детьми</option>
-                        </select>
-                    </div>
-
-                    <div id="children-count-wrapper" class="text-left">
-                        <label class="text-[10px] uppercase tracking-wider text-yellow-400 block mb-1 px-1 text-xs">Сколько будет детей?</label>
-                        <input type="number" id="children-count" min="1" max="10" placeholder="Количество детей" class="input-field">
-                    </div>
-
-                    <div class="pt-4">
-                        <button type="submit" id="submit-btn" class="w-full py-3 bg-yellow-500 text-black font-bold uppercase tracking-widest rounded-xl hover:bg-yellow-400 transition-colors">
-                            Подтвердить
-                        </button>
-                    </div>
+                    <button type="submit" id="submit-btn" class="w-full py-3 bg-yellow-500 text-black font-bold uppercase tracking-widest rounded-xl">Подтвердить</button>
                 </form>
             </div>
-
             <div id="success-container-div" class="py-10 hidden animate-content">
                 <div class="text-5xl mb-6">❤️</div>
-                <h2 class="text-3xl title-font gold-text leading-tight mb-4">Ждем вас с нетерпением!</h2>
-                <p class="text-sm text-white/60 font-light tracking-wide italic">Ваш ответ успешно принят</p>
+                <h2 class="text-3xl title-font gold-text mb-4">Ждем вас!</h2>
             </div>
         </div>
     </div>
 
-    <!-- Модальное окно списка гостей (Админка) -->
     <div id="admin-modal" class="modal">
-        <div class="max-w-lg w-full glass-card p-6 relative border-white/20 border">
-            <button onclick="closeModal('admin-modal')" class="absolute top-4 right-4 text-white/50 hover:text-white">✕</button>
+        <div class="max-w-lg w-full glass-card p-6 relative border border-white/20">
+            <button onclick="closeModal('admin-modal')" class="absolute top-4 right-4 text-white/50">✕</button>
             <h2 class="text-xl font-bold mb-4 gold-text">Список гостей</h2>
             <div class="overflow-y-auto max-h-[60vh]">
                 <table class="admin-table" id="guests-list">
-                    <thead>
-                        <tr>
-                            <th>Имя</th>
-                            <th>Формат</th>
-                            <th>Дети</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Данные загрузятся сюда -->
-                    </tbody>
+                    <thead><tr><th>Имя</th><th>Формат</th><th>Дети</th></tr></thead>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
@@ -261,136 +115,87 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-        // Firebase Config
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-
-        let currentUser = null;
-
-        // Пароль для админки (вы можете изменить его здесь)
-        const ADMIN_PASS = "1234";
-
-        const initAuth = async () => {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-                await signInAnonymously(auth);
-            }
+        // ВСТАВЬТЕ СВОИ ДАННЫЕ СЮДА:
+        const firebaseConfig = {
+             apiKey: "AIzaSyCUJv8DeuYYeKB5YT680QWyfFwzfUjWFko",
+             authDomain: "yubiley-a0d93.firebaseapp.com",
+             projectId: "yubiley-a0d93",
+             storageBucket: "yubiley-a0d93.firebasestorage.app",
+             messagingSenderId: "291687867113",
+             appId: "1:291687867113:web:feeab4057f0ca834d78678",
+             measurementId: "G-E3QHVDJPXY"
         };
 
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-        });
+        const finalConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : firebaseConfig;
+        const currentAppId = typeof __app_id !== 'undefined' ? __app_id : 'my-app-id';
 
-        initAuth();
+        let db, auth;
+        try {
+            const app = initializeApp(finalConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            signInAnonymously(auth);
+        } catch (e) { console.error("Firebase error"); }
 
-        window.openModal = (id) => {
-            const modal = document.getElementById(id);
-            if(id === 'rsvp-modal') {
-                document.getElementById('form-container-div').classList.remove('hidden');
-                document.getElementById('success-container-div').classList.add('hidden');
-                document.getElementById('rsvp-form').reset();
-            }
-            if(id === 'auth-modal') {
-                document.getElementById('admin-password').value = '';
-                document.getElementById('auth-error').classList.add('hidden');
-            }
-            modal.classList.add('active');
-        };
-
+        window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.getElementById(id).classList.remove('active');
-
         window.toggleChildrenInput = () => {
-            const guestType = document.getElementById('guest-type').value;
-            const wrapper = document.getElementById('children-count-wrapper');
-            const input = document.getElementById('children-count');
-            if (guestType === 'С семьей') {
-                wrapper.classList.add('visible');
-                input.setAttribute('required', 'required');
-            } else {
-                wrapper.classList.remove('visible');
-                input.removeAttribute('required');
-            }
+            const val = document.getElementById('guest-type').value;
+            document.getElementById('children-count-wrapper').style.display = val === 'С семьей' ? 'block' : 'none';
         };
 
-        // Проверка пароля админки
         window.checkAdminPassword = () => {
-            const pwd = document.getElementById('admin-password').value;
-            if (pwd === ADMIN_PASS) {
+            if (document.getElementById('admin-password').value === "1234") {
                 closeModal('auth-modal');
-                openAdmin();
+                renderAdmin();
             } else {
                 document.getElementById('auth-error').classList.remove('hidden');
             }
         };
 
-        // Сохранение анкеты
         document.getElementById('rsvp-form').onsubmit = async (e) => {
             e.preventDefault();
-            if (!currentUser) await initAuth();
-
             const btn = document.getElementById('submit-btn');
             btn.disabled = true;
-            btn.innerText = 'Сохраняем...';
-
-            const payload = {
-                name: document.getElementById('guest-name').value,
-                type: document.getElementById('guest-type').value,
-                children: document.getElementById('children-count').value || 0,
-                created_at: new Date().toISOString()
-            };
+            btn.innerText = 'Загрузка...';
 
             try {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'guests'), payload);
+                const colRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'guests');
+                await addDoc(colRef, {
+                    name: document.getElementById('guest-name').value,
+                    type: document.getElementById('guest-type').value,
+                    children: document.getElementById('children-count').value || 0,
+                    ts: new Date().toISOString()
+                });
                 document.getElementById('form-container-div').classList.add('hidden');
                 document.getElementById('success-container-div').classList.remove('hidden');
-            } catch (error) {
-                console.error("Firestore Error:", error);
+            } catch (err) {
+                alert("Ошибка! Проверьте ключи Firebase в коде.");
                 btn.disabled = false;
-                btn.innerText = 'Ошибка. Повторить?';
+                btn.innerText = 'Подтвердить';
             }
         };
 
-        // Загрузка списка гостей
-        async function openAdmin() {
+        async function renderAdmin() {
+            openModal('admin-modal');
             const tbody = document.querySelector('#guests-list tbody');
             tbody.innerHTML = '<tr><td colspan="3">Загрузка...</td></tr>';
-            document.getElementById('admin-modal').classList.add('active');
-
-            if (!currentUser) await initAuth();
-
             try {
-                const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'guests'));
-                const snap = await getDocs(q);
+                const colRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'guests');
+                const snap = await getDocs(colRef);
                 tbody.innerHTML = '';
-                
-                snap.forEach((doc) => {
+                snap.forEach(doc => {
                     const d = doc.data();
-                    tbody.innerHTML += `<tr>
-                        <td>${d.name || 'Аноним'}</td>
-                        <td>${d.type || '-'}</td>
-                        <td>${d.children || '-'}</td>
-                    </tr>`;
+                    tbody.innerHTML += `<tr><td>${d.name}</td><td>${d.type}</td><td>${d.children}</td></tr>`;
                 });
-
-                if (snap.empty) {
-                    tbody.innerHTML = '<tr><td colspan="3">Записей пока нет</td></tr>';
-                }
-            } catch (e) {
-                console.error("Admin Error:", e);
-                tbody.innerHTML = '<tr><td colspan="3">Ошибка доступа к данным</td></tr>';
-            }
+                if (snap.empty) tbody.innerHTML = '<tr><td colspan="3">Пусто</td></tr>';
+            } catch (err) { tbody.innerHTML = '<tr><td colspan="3">Ошибка доступа</td></tr>'; }
         }
 
-        window.onclick = (e) => {
-            if (e.target.classList.contains('modal')) closeModal(e.target.id);
-        };
+        window.onclick = (e) => { if (e.target.classList.contains('modal')) closeModal(e.target.id); };
     </script>
 </body>
 </html>
