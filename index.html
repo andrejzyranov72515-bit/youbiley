@@ -154,6 +154,7 @@
             60% { transform: scale(1); }
         }
 
+        /* Fixes for form fields to prevent white background */
         .input-field { 
             background: rgba(255, 255, 255, 0.07) !important; 
             border: 1px solid rgba(255, 255, 255, 0.1) !important; 
@@ -163,6 +164,23 @@
             width: 100% !important; 
             transition: all 0.3s ease !important;
             outline: none !important;
+            -webkit-appearance: none;
+            appearance: none;
+            color-scheme: dark;
+        }
+
+        .input-field option {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #1a1a1a inset !important;
+            -webkit-text-fill-color: white !important;
+            transition: background-color 5000s ease-in-out 0s;
         }
         
         .modal { 
@@ -184,24 +202,24 @@
         .gallery-grid img { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
         .gallery-grid div:hover img { transform: scale(1.1); }
 
-        /* Кастомная анимация для библиотеки AOS (строго из-за полей) */
+        /* Custom animation for AOS (drive from behind screen) */
         [data-aos="drive-in-left"] {
-            transform: translateX(-100%); /* Стартует полностью за левым краем */
+            transform: translateX(-100%);
             opacity: 0;
             transition-property: transform, opacity;
         }
         [data-aos="drive-in-left"].aos-animate {
-            transform: translateX(-40%); /* Выезжает только на 60% своей длины */
+            transform: translateX(-40%);
             opacity: 0.95;
         }
 
         [data-aos="drive-in-right"] {
-            transform: translateX(100%); /* Стартует полностью за правым краем */
+            transform: translateX(100%);
             opacity: 0;
             transition-property: transform, opacity;
         }
         [data-aos="drive-in-right"].aos-animate {
-            transform: translateX(40%); /* Выезжает только на 60% своей длины */
+            transform: translateX(40%);
             opacity: 0.95;
         }
     </style>
@@ -244,7 +262,7 @@
             </div>
         </div>
 
-        <!-- Машины: теперь используют кастомную анимацию, заезжают строго из-за экрана и скрываются при прокрутке -->
+        <!-- Машины: используют кастомную анимацию, заезжают строго из-за экрана и скрываются при прокрутке -->
         <div class="absolute left-0 top-[60%] md:top-[50%] z-20 pointer-events-none" data-aos="drive-in-left" data-aos-easing="ease-out-cubic" data-aos-delay="1500" data-aos-duration="2500">
             <img src="https://i.ibb.co/6cg57WP3/png-transparent-2009-nissan-gt-r-nissan-skyline-gt-r-sports-car-skyline-car-computer-wallpaper-perfo.png" alt="Ниссан" class="w-72 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
         </div>
