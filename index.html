@@ -281,12 +281,12 @@
             </div>
         </div>
 
-        <!-- Автомобили по бокам -->
-        <div class="absolute left-0 bottom-5 md:bottom-0 z-20 pointer-events-none hidden md:block" data-aos="drive-in-left" data-aos-easing="ease-out-cubic" data-aos-delay="1500" data-aos-duration="2500">
-            <img src="https://i.ibb.co/6cg57WP3/png-transparent-2009-nissan-gt-r-nissan-skyline-gt-r-sports-car-skyline-car-computer-wallpaper-perfo.png" alt="Ниссан" class="w-72 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
+        <!-- Автомобили по бокам (теперь видимы на мобильных) -->
+        <div class="absolute -left-10 md:left-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100" data-aos="drive-in-left" data-aos-easing="ease-out-cubic" data-aos-delay="1500" data-aos-duration="2500">
+            <img src="https://i.ibb.co/6cg57WP3/png-transparent-2009-nissan-gt-r-nissan-skyline-gt-r-sports-car-skyline-car-computer-wallpaper-perfo.png" alt="Ниссан" class="w-56 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
         </div>
-        <div class="absolute right-0 bottom-5 md:bottom-0 z-20 pointer-events-none hidden md:block" data-aos="drive-in-right" data-aos-easing="ease-out-cubic" data-aos-delay="1800" data-aos-duration="2500">
-            <img src="https://i.ibb.co/Fbzfg8nf/png-transparent-2015-ferrari-458-italia-2014-ferrari-458-italia-ferrari-f430-2013-ferrari-458-italia.png" alt="Феррари" class="w-72 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
+        <div class="absolute -right-10 md:right-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100" data-aos="drive-in-right" data-aos-easing="ease-out-cubic" data-aos-delay="1800" data-aos-duration="2500">
+            <img src="https://i.ibb.co/Fbzfg8nf/png-transparent-2015-ferrari-458-italia-2014-ferrari-458-italia-ferrari-f430-2013-ferrari-458-italia.png" alt="Феррари" class="w-56 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
         </div>
     </section>
 
@@ -311,16 +311,40 @@
                 </div>
             </div>
 
-            <!-- Галерея -->
+            <!-- Галерея (С наклоном фоток) -->
             <div class="space-y-12 relative">
                 <h2 class="text-4xl title-font gold-text text-center mb-12" data-aos="fade-up">Листая страницы памяти</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-6 gallery-grid">
-                    <div class="photo-frame aspect-square" data-aos="fade-up-right"><img src="https://i.ibb.co/YTyNW0R6/FEswpd-XGJ0t-DS8n-WYl90lhm8-D73j-vl-FZZ95i9f-Prj-Ca-JAu0-P0-Yw-FRr-NOWcpketm-GGH5-Mypw-WEoyv-F8-Xd138-XV5.jpg" class="w-full h-full object-cover"></div>
-                    <div class="photo-frame aspect-square" data-aos="fade-down"><img src="https://i.ibb.co/35NKxsgJ/20110812151.jpg" class="w-full h-full object-cover"></div>
-                    <div class="photo-frame aspect-square" data-aos="fade-up-left"><img src="https://i.ibb.co/DPyLwvJF/26-09-09-1427.jpg" class="w-full h-full object-cover"></div>
-                    <div class="photo-frame aspect-square" data-aos="zoom-in-right"><img src="https://i.ibb.co/N2wkJrP5/3-129.jpg" class="w-full h-full object-cover"></div>
-                    <div class="photo-frame aspect-square" data-aos="zoom-in"><img src="https://i.ibb.co/Kxq64Jp5/fa68ce92-8e0c-4cbf-bfd5-0fff8e917d41.jpg" class="w-full h-full object-cover"></div>
-                    <div class="photo-frame aspect-square" data-aos="zoom-in-left"><img src="https://i.ibb.co/B28sv1NQ/0a-Mg0-R-vu-WQVljdd-U7ct-Vgg-U3-Sn-IVodr-Imfq-Ba-Wkh-Hlmg9sm-DDt-U7-GV-dfo-PMi5lokt-ZYJpbxh1-WLEdh74-HGi.jpg" class="w-full h-full object-cover"></div>
+                    <div data-aos="fade-up-right">
+                        <div class="photo-frame aspect-square transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.ibb.co/YTyNW0R6/FEswpd-XGJ0t-DS8n-WYl90lhm8-D73j-vl-FZZ95i9f-Prj-Ca-JAu0-P0-Yw-FRr-NOWcpketm-GGH5-Mypw-WEoyv-F8-Xd138-XV5.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="fade-down">
+                        <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.ibb.co/35NKxsgJ/20110812151.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="fade-up-left">
+                        <div class="photo-frame aspect-square transform -rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.ibb.co/DPyLwvJF/26-09-09-1427.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="zoom-in-right">
+                        <div class="photo-frame aspect-square transform rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.ibb.co/N2wkJrP5/3-129.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="zoom-in">
+                        <div class="photo-frame aspect-square transform -rotate-1 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.ibb.co/Kxq64Jp5/fa68ce92-8e0c-4cbf-bfd5-0fff8e917d41.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="zoom-in-left">
+                        <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.ibb.co/B28sv1NQ/0a-Mg0-R-vu-WQVljdd-U7ct-Vgg-U3-Sn-IVodr-Imfq-Ba-Wkh-Hlmg9sm-DDt-U7-GV-dfo-PMi5lokt-ZYJpbxh1-WLEdh74-HGi.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
                 </div>
             </div>
 
