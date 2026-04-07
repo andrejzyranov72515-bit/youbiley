@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Юбилей Александра - 45 лет</title>
+    <title>Юбилей Александра - 45 годиков</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -357,23 +357,59 @@
                 </p>
             </div>
 
+            <!-- Программа -->
+            <div class="glass-card p-8 md:p-16 border-white/5 relative overflow-hidden" data-aos="zoom-in">
+                <div class="decor-ring w-96 h-96 -top-20 -left-20 opacity-20" data-aos="fade-down-right" data-aos-delay="1000" data-aos-duration="2500"></div>
+                <div class="decor-spark top-10 right-20" data-aos="fade-in" data-aos-delay="1500">✦</div>
+
+                <h2 class="text-4xl title-font gold-text text-center mb-16 relative z-10">Программа вечера</h2>
+                <div class="grid gap-12 max-w-2xl mx-auto relative z-10">
+                    <div class="flex items-center gap-8" data-aos="fade-right">
+                        <div class="text-3xl font-bold gold-text w-24 shrink-0">16:30</div>
+                        <div class="h-px bg-white/10 grow relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" data-aos="zoom-in" data-aos-delay="1200" data-aos-duration="1500"></div>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="text-xl font-bold uppercase tracking-widest">Welcome</h3>
+                            <p class="text-sm opacity-50">Встреча гостей и живая музыка</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-8" data-aos="fade-left">
+                        <div class="text-3xl font-bold gold-text w-24 shrink-0">17:00</div>
+                        <div class="h-px bg-white/10 grow relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" data-aos="zoom-in" data-aos-delay="1400" data-aos-duration="1500"></div>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="text-xl font-bold uppercase tracking-widest">Банкет</h3>
+                            <p class="text-sm opacity-50">Торжественная часть</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Локация -->
             <div class="glass-card p-10 text-center relative overflow-hidden" data-aos="fade-up">
-                <h2 class="text-3xl title-font gold-text mb-6">Жду вас здесь</h2>
-                <p class="text-2xl mb-2 font-bold uppercase tracking-wider">Банкет-холл «Мишель»</p>
-                <p class="text-lg opacity-60 mb-10">пр. Ленина, 154А, г. Барнаул</p>
-                <div class="photo-frame h-80 w-full shadow-2xl">
+                <div class="decor-ring w-[120%] h-[120%] -top-[10%] -left-[10%] opacity-10" data-aos="zoom-out" data-aos-delay="1000" data-aos-duration="3000"></div>
+
+                <h2 class="text-3xl title-font gold-text mb-6 relative z-10">Жду вас здесь</h2>
+                <p class="text-2xl mb-2 font-bold uppercase tracking-wider relative z-10">Банкет-холл «Мишель»</p>
+                <p class="text-lg opacity-60 mb-10 relative z-10">пр. Ленина, 154А, г. Барнаул</p>
+                <div class="photo-frame h-80 w-full shadow-2xl relative z-10">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2346.545678912345!2d83.743210!3d53.364567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x42df468e8e8e8e8e%3A0x1234567890abcdef!2z0L_RgC3Rgi4g0JvQtdC90LjQvdCwLCAxNTRBLCDQkdCw0YDQvdCw0YPQuywg0JDQu9GC0LDQudGB0LrQuNC5INC60YDQsNC5LCA2NTYwMDU!5e0!3m2!1sru!2sru!4v1711234567890!5m2!1sru!2sru" 
                         width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(0.6);" allowfullscreen="" loading="lazy">
                     </iframe>
+                    <div class="absolute inset-0 border-2 border-yellow-500/20 pointer-events-none" data-aos="fade-in" data-aos-delay="1500" data-aos-duration="2000"></div>
                 </div>
             </div>
         </section>
 
         <!-- Кнопка RSVP -->
-        <section class="py-48 px-6 text-center">
-            <div class="max-w-md mx-auto" data-aos="zoom-out-up">
+        <section class="py-48 px-6 text-center relative">
+            <div class="decor-spark top-1/4 left-1/3" data-aos="fade-up" data-aos-delay="1000">✦</div>
+            <div class="decor-spark top-1/2 right-1/3 scale-150" data-aos="fade-up" data-aos-delay="1400">✦</div>
+            
+            <div class="max-w-md mx-auto relative z-10" data-aos="zoom-out-up">
                 <button onclick="openModal('rsvp-modal')" class="w-full px-12 py-7 bg-yellow-500 text-black font-black uppercase tracking-[0.2em] rounded-full transition-all hover:bg-yellow-400 hover:scale-105 shadow-[0_25px_80px_rgba(234,179,8,0.4)]">
                     Подтвердить участие
                 </button>
@@ -381,7 +417,7 @@
         </section>
     </div>
 
-    <!-- Админка -->
+    <!-- Админка (Замочек) -->
     <div class="py-10 text-center opacity-20 hover:opacity-100 transition-opacity relative z-10">
         <button onclick="openModal('auth-modal')" class="p-4 rounded-full border border-white/10 hover:border-yellow-500/50 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
@@ -391,22 +427,23 @@
     <!-- Модальные окна -->
     <div id="rsvp-modal" class="modal">
         <div class="max-w-sm w-full glass-card p-10 text-center relative">
-            <button onclick="closeModal('rsvp-modal')" class="absolute top-6 right-6 text-white/30">✕</button>
+            <button onclick="closeModal('rsvp-modal')" class="absolute top-6 right-6 text-white/30 hover:text-white">✕</button>
             <div id="form-container-div">
                 <h2 class="text-3xl title-font gold-text mb-8">Буду ждать вас</h2>
                 <form id="rsvp-form" class="space-y-5">
-                    <input type="text" id="guest-name" placeholder="Ваше Имя" class="input-field text-center" required>
+                    <input type="text" id="guest-name" placeholder="Ваше Имя и Фамилия" class="input-field text-center" required>
                     <select id="guest-type" class="input-field">
                         <option value="Один">Приду один / одна</option>
                         <option value="Пара">Придем вдвоем</option>
                         <option value="Семья">Семья с детьми</option>
                     </select>
-                    <button type="submit" class="w-full py-5 bg-yellow-500 text-black font-black uppercase tracking-widest rounded-2xl">Отправить</button>
+                    <button type="submit" id="submit-btn" class="w-full py-5 bg-yellow-500 text-black font-black uppercase tracking-widest rounded-2xl shadow-xl transition-transform active:scale-95">Отправить</button>
                 </form>
             </div>
             <div id="success-container-div" class="py-10 hidden">
-                <span class="beating-heart">❤️</span>
-                <h2 class="text-3xl title-font gold-text mt-4">До встречи!</h2>
+                <div class="mb-6"><span class="beating-heart">❤️</span></div>
+                <h2 class="text-3xl title-font gold-text mb-4">Спасибо!</h2>
+                <p class="opacity-60">Ваше участие подтверждено.</p>
             </div>
         </div>
     </div>
@@ -447,47 +484,67 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         
+        let dbPath = 'guests';
+        let useAuth = false;
         let firebaseConfig;
+
+        // "Умная" настройка: если запущено в нашей тестовой среде - используем ее правила,
+        // если код скопирован к вам на хостинг - используем напрямую ВАШУ базу yubiley-a0d93
         if (typeof __firebase_config !== 'undefined') {
-             firebaseConfig = JSON.parse(__firebase_config);
+            firebaseConfig = JSON.parse(__firebase_config);
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+            dbPath = `artifacts/${appId}/public/data/guests`;
+            useAuth = true;
         } else {
-             // Fallback Config 
-             firebaseConfig = {
-                  apiKey: "AIzaSyCUJv8DeuYYeKB5YT680QWyfFwzfUjWFko",
-                  authDomain: "yubiley-a0d93.firebaseapp.com",
-                  projectId: "yubiley-a0d93",
-                  storageBucket: "yubiley-a0d93.firebasestorage.app",
-                  appId: "1:291687867113:web:feeab4057f0ca834d78678"
-             };
+            firebaseConfig = {
+                apiKey: "AIzaSyCUJv8DeuYYeKB5YT680QWyfFwzfUjWFko",
+                authDomain: "yubiley-a0d93.firebaseapp.com",
+                projectId: "yubiley-a0d93",
+                storageBucket: "yubiley-a0d93.firebasestorage.app",
+                messagingSenderId: "291687867113",
+                appId: "1:291687867113:web:feeab4057f0ca834d78678"
+            };
         }
 
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
         const db = getFirestore(app);
         let currentUser = null;
 
-        // Авторизация для работы с БД
-        const initAuth = async () => {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
+        if (useAuth) {
+            const auth = getAuth(app);
+            const initAuth = async () => {
+                try {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (e) {
+                    console.error("Auth init error:", e);
                 }
-            } catch (e) {
-                console.error("Auth init error:", e);
+            };
+            initAuth();
+            onAuthStateChanged(auth, (user) => {
+                currentUser = user;
+            });
+        }
+
+        AOS.init({ duration: 1000, once: false, mirror: true });
+
+        window.onload = () => {
+            const portrait = document.getElementById('main-portrait');
+            if(portrait) {
+                portrait.style.transform = "scale(1.55)";
             }
         };
-        initAuth();
 
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
+        const bg = document.getElementById('parallax-bg');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 15;
+            const y = (e.clientY / window.innerHeight - 0.5) * 15;
+            if(bg) bg.style.transform = `translate(${x}px, ${y}px)`;
         });
 
-        AOS.init({ duration: 1000, once: false });
-
-        // Фон-частицы
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -501,16 +558,23 @@
                 this.y = Math.random() * canvas.height + 100;
                 this.size = Math.random() * 2 + 0.5;
                 this.speedY = Math.random() * 0.5 + 0.1;
+                this.speedX = (Math.random() - 0.5) * 0.3;
                 this.opacity = Math.random() * 0.5 + 0.1;
             }
-            update() { this.y -= this.speedY; if (this.y < -10) this.reset(); }
+            update() { 
+                this.y -= this.speedY; 
+                this.x += this.speedX;
+                if (this.y < -10) this.reset(); 
+            }
             draw() {
                 ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); 
+                ctx.fill();
             }
         }
         
-        for(let i=0; i<60; i++) particles.push(new Particle());
+        for(let i=0; i<80; i++) particles.push(new Particle());
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
@@ -518,45 +582,62 @@
         };
         animate();
 
-        // RSVP Форма
-        const rsvpForm = document.getElementById('rsvp-form');
-        rsvpForm.onsubmit = async (e) => {
-            e.preventDefault();
-            if (!currentUser) {
-                alert("Подождите, устанавливается безопасное соединение...");
-                return;
-            }
-
-            const submitBtn = rsvpForm.querySelector('button');
-            submitBtn.disabled = true;
-            submitBtn.innerText = 'Секунду...';
-
-            try {
-                const publicDataRef = collection(db, 'artifacts', appId, 'public', 'data', 'guests');
-                await addDoc(publicDataRef, {
-                    name: document.getElementById('guest-name').value,
-                    type: document.getElementById('guest-type').value,
-                    date: new Date().toISOString(),
-                    userId: currentUser.uid
-                });
-                
-                document.getElementById('form-container-div').classList.add('hidden');
-                document.getElementById('success-container-div').classList.remove('hidden');
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#bf953f', '#fcf6ba'] });
-            } catch (err) {
-                console.error(err);
-                alert('Произошла ошибка, попробуйте позже.');
-                submitBtn.disabled = false;
-                submitBtn.innerText = 'Отправить';
-            }
-        };
-
         window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.getElementById(id).classList.remove('active');
 
+        // Обработка формы
+        document.addEventListener('submit', async (e) => {
+            if (e.target && e.target.id === 'rsvp-form') {
+                e.preventDefault();
+                
+                if (useAuth && !currentUser) {
+                    alert("Устанавливается защищенное соединение, попробуйте еще раз через секунду...");
+                    return;
+                }
+
+                const btn = document.getElementById('submit-btn');
+                if(btn) {
+                    btn.disabled = true; 
+                    btn.innerText = 'Отправка...';
+                }
+
+                try {
+                    const guestData = {
+                        name: document.getElementById('guest-name').value,
+                        type: document.getElementById('guest-type').value,
+                        ts: new Date().toISOString()
+                    };
+                    if (useAuth && currentUser) {
+                        guestData.userId = currentUser.uid;
+                    }
+
+                    // Динамический выбор пути (для Canvas или для вашего Firebase)
+                    let ref;
+                    if (dbPath.includes('/')) {
+                        const parts = dbPath.split('/');
+                        ref = collection(db, parts[0], parts[1], parts[2], parts[3], parts[4]);
+                    } else {
+                        ref = collection(db, dbPath);
+                    }
+
+                    await addDoc(ref, guestData);
+                    
+                    document.getElementById('form-container-div').classList.add('hidden');
+                    document.getElementById('success-container-div').classList.remove('hidden');
+                    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#bf953f', '#ffffff'] });
+                } catch (err) { 
+                    console.error(err);
+                    alert("Ошибка отправки! Пожалуйста, проверьте интернет.");
+                    if(btn) {
+                        btn.disabled = false; 
+                        btn.innerText = 'Отправить'; 
+                    }
+                }
+            }
+        });
+
         // Логика Админки
         window.checkAdminPassword = () => {
-            // Пароль: 1234
             if(document.getElementById('admin-password').value === "1234") {
                 closeModal('auth-modal');
                 renderGuestList();
@@ -569,12 +650,19 @@
         };
 
         window.renderGuestList = async () => {
-            if (!currentUser) return;
+            if (useAuth && !currentUser) return;
             const tbody = document.querySelector('#guests-list tbody');
             tbody.innerHTML = '<tr><td colspan="3" class="p-8 text-center opacity-50 italic">Загрузка данных...</td></tr>';
             try {
-                const publicDataRef = collection(db, 'artifacts', appId, 'public', 'data', 'guests');
-                const querySnapshot = await getDocs(publicDataRef);
+                let ref;
+                if (dbPath.includes('/')) {
+                    const parts = dbPath.split('/');
+                    ref = collection(db, parts[0], parts[1], parts[2], parts[3], parts[4]);
+                } else {
+                    ref = collection(db, dbPath);
+                }
+
+                const querySnapshot = await getDocs(ref);
                 tbody.innerHTML = '';
                 
                 querySnapshot.forEach((gDoc) => {
@@ -587,7 +675,12 @@
                     `;
                     row.querySelector('button').onclick = async () => {
                         if(confirm('Удалить гостя из списка?')) { 
-                            await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'guests', gDoc.id)); 
+                            if (dbPath.includes('/')) {
+                                const parts = dbPath.split('/');
+                                await deleteDoc(doc(db, parts[0], parts[1], parts[2], parts[3], parts[4], gDoc.id)); 
+                            } else {
+                                await deleteDoc(doc(db, dbPath, gDoc.id));
+                            }
                             renderGuestList(); 
                         }
                     };
