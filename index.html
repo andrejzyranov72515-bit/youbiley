@@ -260,6 +260,20 @@
     </div>
     <canvas id="bg-canvas"></canvas>
 
+    <!-- Музыкальный плеер -->
+    <audio id="bg-music" loop preload="auto">
+        <!-- Замените ссылку ниже на свою мелодию в формате mp3 -->
+        <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_d0a13f69d2.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Переключатель музыки -->
+    <div id="music-toggle-container" class="fixed top-5 right-5 z-50 flex items-center gap-3 glass-card px-4 py-2 rounded-full cursor-pointer hover:bg-white/10 transition-colors shadow-lg">
+        <span class="text-xs font-bold uppercase tracking-widest text-white/80 select-none">Музыка</span>
+        <div id="music-switch-bg" class="w-12 h-6 bg-white/20 rounded-full relative transition-colors duration-300">
+            <div id="music-switch-knob" class="w-4 h-4 bg-white rounded-full absolute top-1 left-1 transition-transform duration-300 shadow-md"></div>
+        </div>
+    </div>
+
     <div class="w-full max-w-[100vw] overflow-x-hidden relative">
         <section class="min-h-screen flex flex-col items-center justify-center p-6 text-center relative">
             <div class="decor-ring w-64 h-64 top-10 left-10 md:w-96 md:h-96 md:-top-10 md:-left-20" data-aos="zoom-out" data-aos-delay="1800" data-aos-duration="3000"></div>
@@ -319,6 +333,7 @@
             <div class="space-y-12 relative">
                 <h2 class="text-4xl title-font gold-text text-center mb-12" data-aos="fade-up">Листая страницы памяти</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-6 gallery-grid">
+                    <!-- Старые 6 фото -->
                     <div data-aos="fade-up-right">
                         <div class="photo-frame aspect-square transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
                             <img src="https://i.ibb.co/YTyNW0R6/FEswpd-XGJ0t-DS8n-WYl90lhm8-D73j-vl-FZZ95i9f-Prj-Ca-JAu0-P0-Yw-FRr-NOWcpketm-GGH5-Mypw-WEoyv-F8-Xd138-XV5.jpg" class="w-full h-full object-cover">
@@ -346,14 +361,46 @@
                     </div>
                     <div data-aos="zoom-in-left">
                         <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.ibb.co/gZxPTkXd/d4e7cc64-7cd1-4c76-871f-9fd10e6b4545.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Новые 6 фото -->
+                    <div data-aos="fade-up-right">
+                        <div class="photo-frame aspect-square transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://vki4.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1J95SBLDlakvx5f3p4qeC_AAwM9WMqqN45kpm22Uoa3gGxzyQ0vDTiwuweu7AoE1vCEPcSeHrEnbrjev9ApS9bJ3XfMISsZJNjxHsZgrt4AAAAp" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="fade-down">
+                        <div class="photo-frame aspect-square transform rotate-1 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1Iya7OrsioXvx8J4hEyGrdx3Gs7NIRA8PajEeNio_KT7HJQpwBp6XH1SiR8SuTzdZylNo_SnhHYkwFgiS142ufrGyE74w11vQaJ2cqCSSYAAAAp" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="fade-up-left">
+                        <div class="photo-frame aspect-square transform -rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1JQVRDYv1uWuOSYnZL4mRYfp5v09C7qGOA4QNr3HIed31tm09adnZsMM7aYxtLwMPygHmrDjBKY4oHFyUc5dyUc8Dy65umDhKjh65-GXe0AAAAp" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="zoom-in-right">
+                        <div class="photo-frame aspect-square transform rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1IeYNI9KhFF0ySXQ55VZLnIpG9VVzJCY7VdZG3FFdFyhXvQWiZ6_GL07mQDHoAmIALpyIOebnHRzXLIWSaVyXERZGRyLgfu_4PQyb61ruoAAAAp" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="zoom-in">
+                        <div class="photo-frame aspect-square transform -rotate-1 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
                             <img src="https://i.ibb.co/B28sv1NQ/0a-Mg0-R-vu-WQVljdd-U7ct-Vgg-U3-Sn-IVodr-Imfq-Ba-Wkh-Hlmg9sm-DDt-U7-GV-dfo-PMi5lokt-ZYJpbxh1-WLEdh74-HGi.jpg" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div data-aos="zoom-in-left">
+                        <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                            <img src="https://i.ibb.co/k6KWpkmL/photo-5264784033018133959-y.jpg" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Календарь -->
-            <div class="py-20 relative" data-aos="fade-up">
+            <div class="py-20 relative" data-aos="fade-up" id="salute-trigger">
                 <div class="text-center mb-10">
                     <h2 class="text-4xl title-font gold-text mb-2">Запомните эту дату</h2>
                     <p class="opacity-50 uppercase tracking-widest text-xs">Июнь 2026</p>
@@ -609,6 +656,73 @@
             requestAnimationFrame(animate);
         };
         animate();
+
+        // --- Музыка ---
+        const music = document.getElementById('bg-music');
+        const musicToggleContainer = document.getElementById('music-toggle-container');
+        const switchBg = document.getElementById('music-switch-bg');
+        const switchKnob = document.getElementById('music-switch-knob');
+        let isMusicPlaying = false;
+
+        const toggleMusic = () => {
+            if (isMusicPlaying) {
+                music.pause();
+                switchBg.classList.remove('bg-yellow-500');
+                switchBg.classList.add('bg-white/20');
+                switchKnob.classList.remove('translate-x-6');
+            } else {
+                music.play().catch(e => console.log('Autoplay prevented', e));
+                switchBg.classList.remove('bg-white/20');
+                switchBg.classList.add('bg-yellow-500');
+                switchKnob.classList.add('translate-x-6');
+            }
+            isMusicPlaying = !isMusicPlaying;
+        };
+
+        musicToggleContainer.addEventListener('click', (e) => {
+            e.stopPropagation(); // предотвращаем двойное срабатывание при первом клике
+            toggleMusic();
+        });
+
+        // Включение по первому клику на странице
+        document.body.addEventListener('click', () => {
+            if (!isMusicPlaying && music.paused) {
+                toggleMusic();
+            }
+        }, { once: true });
+
+        // --- Салют (Срабатывает при прокрутке до календаря) ---
+        const launchSalute = () => {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#bf953f', '#fcf6ba', '#ffffff'] }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#bf953f', '#fcf6ba', '#ffffff'] }));
+            }, 250);
+        };
+
+        // Отслеживание прокрутки до элемента для салюта
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    launchSalute();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        setTimeout(() => {
+            const saluteTrigger = document.getElementById('salute-trigger');
+            if(saluteTrigger) observer.observe(saluteTrigger);
+        }, 1000);
+
 
         window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.getElementById(id).classList.remove('active');
