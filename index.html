@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Юбилей Александра - 45 лет</title>
+    <title>Юбилей Александра - 45 годиков</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -284,7 +284,6 @@
 
     <!-- Музыкальный плеер -->
     <audio id="bg-music" loop preload="auto">
-        <!-- Замените ссылку ниже на свою мелодию в формате mp3 -->
         <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_d0a13f69d2.mp3" type="audio/mpeg">
     </audio>
     
@@ -306,7 +305,8 @@
                     Юбилей Александра
                 </h1>
                 <div class="mb-6" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1200">
-                    <span class="text-6xl md:text-8xl font-black gold-text tracking-tighter">45</span>
+                    <!-- Добавили салют по клику на 45 -->
+                    <span class="text-6xl md:text-8xl font-black gold-text tracking-tighter cursor-pointer hover:scale-105 transition-transform inline-block" onclick="window.launchSalute()" title="Нажми на меня!">45</span>
                     <span class="block text-sm uppercase tracking-[0.5em] opacity-60 -mt-2">Прекрасных лет</span>
                 </div>
                 <div class="photo-frame-main mb-10 mx-auto w-full max-w-[280px] md:max-w-[320px] aspect-[3/4]" data-aos="fade-up" data-aos-delay="600">
@@ -354,7 +354,6 @@
                 <div id="gallery" class="space-y-12 relative scroll-mt-20">
                     <h2 class="text-4xl title-font gold-text text-center mb-12" data-aos="fade-up">Листая страницы памяти</h2>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-6 gallery-grid">
-                        <!-- Старые 6 фото -->
                         <div data-aos="fade-up-right">
                             <div class="photo-frame aspect-square transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
                                 <img src="https://i.ibb.co/YTyNW0R6/FEswpd-XGJ0t-DS8n-WYl90lhm8-D73j-vl-FZZ95i9f-Prj-Ca-JAu0-P0-Yw-FRr-NOWcpketm-GGH5-Mypw-WEoyv-F8-Xd138-XV5.jpg" class="w-full h-full object-cover">
@@ -420,31 +419,31 @@
                     </div>
                 </div>
 
-                <!-- Счетчик времени -->
+                <!-- Счетчик времени (Обновлен для мобильных) -->
                 <div id="timer" class="py-20 relative z-10 scroll-mt-20" data-aos="fade-up">
                     <div class="text-center mb-10">
                         <h2 class="text-4xl title-font gold-text mb-2">До торжества осталось</h2>
                         <p class="opacity-50 uppercase tracking-widest text-xs">Готовимся к празднику</p>
                     </div>
-                    <div class="glass-card p-6 md:p-10 max-w-3xl mx-auto flex justify-center gap-2 md:gap-8 text-center shadow-2xl">
+                    <div class="glass-card p-4 md:p-10 max-w-3xl mx-auto flex justify-center items-center gap-2 sm:gap-4 md:gap-8 text-center shadow-2xl">
                         <div>
-                            <div id="t-days" class="text-4xl md:text-6xl font-black gold-text">00</div>
-                            <div class="text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-2">Дней</div>
+                            <div id="t-days" class="text-3xl sm:text-4xl md:text-6xl font-black gold-text">00</div>
+                            <div class="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-1 md:mt-2">Дней</div>
                         </div>
-                        <div class="text-4xl md:text-6xl font-black gold-text opacity-30">:</div>
+                        <div class="text-3xl sm:text-4xl md:text-6xl font-black gold-text opacity-30 pb-4">:</div>
                         <div>
-                            <div id="t-hours" class="text-4xl md:text-6xl font-black gold-text">00</div>
-                            <div class="text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-2">Часов</div>
+                            <div id="t-hours" class="text-3xl sm:text-4xl md:text-6xl font-black gold-text">00</div>
+                            <div class="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-1 md:mt-2">Часов</div>
                         </div>
-                        <div class="text-4xl md:text-6xl font-black gold-text opacity-30">:</div>
+                        <div class="text-3xl sm:text-4xl md:text-6xl font-black gold-text opacity-30 pb-4">:</div>
                         <div>
-                            <div id="t-minutes" class="text-4xl md:text-6xl font-black gold-text">00</div>
-                            <div class="text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-2">Минут</div>
+                            <div id="t-minutes" class="text-3xl sm:text-4xl md:text-6xl font-black gold-text">00</div>
+                            <div class="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-1 md:mt-2">Минут</div>
                         </div>
-                        <div class="text-4xl md:text-6xl font-black gold-text opacity-30 hidden sm:block">:</div>
-                        <div class="hidden sm:block">
-                            <div id="t-seconds" class="text-4xl md:text-6xl font-black gold-text">00</div>
-                            <div class="text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-2">Секунд</div>
+                        <div class="text-3xl sm:text-4xl md:text-6xl font-black gold-text opacity-30 pb-4">:</div>
+                        <div>
+                            <div id="t-seconds" class="text-3xl sm:text-4xl md:text-6xl font-black gold-text">00</div>
+                            <div class="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-1 md:mt-2">Секунд</div>
                         </div>
                     </div>
                 </div>
@@ -561,7 +560,7 @@
         <!-- Футер с секретами -->
         <div class="flex justify-center items-center gap-8 py-10 relative z-10">
             <!-- Тайная пасхалка -->
-            <button onclick="openEasterEgg()" class="text-3xl opacity-40 hover:opacity-100 transition-opacity cursor-pointer animate-pulse" title="Секрет">
+            <button onclick="openEasterEgg()" class="text-4xl opacity-50 hover:opacity-100 transition-opacity cursor-pointer animate-pulse" title="Секрет">
                 👑
             </button>
             
@@ -733,14 +732,13 @@
         };
 
         // --- Таймер Обратного Отсчета ---
-        // Устанавливаем дату: 6 июня 2026 года 16:30
         const targetDate = new Date('2026-06-06T16:30:00').getTime();
 
         setInterval(() => {
             const now = new Date().getTime();
             const distance = targetDate - now;
             
-            if(distance < 0) return; // Если время вышло, останавливаем
+            if(distance < 0) return;
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -760,6 +758,10 @@
             if(portrait) {
                 portrait.style.transform = "scale(1.55)";
             }
+            // Салют при загрузке страницы
+            setTimeout(() => {
+                window.launchSalute();
+            }, 1500);
         };
 
         const bg = document.getElementById('parallax-bg');
@@ -872,7 +874,7 @@
         });
 
         // --- Салют ---
-        const launchSalute = () => {
+        window.launchSalute = () => {
             var duration = 3 * 1000;
             var animationEnd = Date.now() + duration;
             var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
@@ -891,7 +893,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    launchSalute();
+                    window.launchSalute();
                     observer.unobserve(entry.target);
                 }
             });
