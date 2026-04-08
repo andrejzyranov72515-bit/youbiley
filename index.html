@@ -260,240 +260,313 @@
     </div>
     <canvas id="bg-canvas"></canvas>
 
+    <!-- Кнопка Меню (Гамбургер) -->
+    <button id="menu-btn" class="fixed top-5 left-5 z-50 flex items-center justify-center w-12 h-12 glass-card rounded-full cursor-pointer hover:bg-white/10 transition-colors shadow-lg">
+        <svg class="w-6 h-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+
+    <!-- Оверлей Меню -->
+    <div id="nav-menu" class="fixed inset-0 bg-black/95 z-[100] transform -translate-x-full transition-transform duration-500 flex flex-col items-center justify-center backdrop-blur-md">
+        <button id="close-menu-btn" class="absolute top-5 left-5 w-12 h-12 flex items-center justify-center text-white/50 hover:text-white transition-colors">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <ul class="text-center space-y-8 text-2xl md:text-3xl title-font gold-text">
+            <li><a href="#welcome" class="hover:text-white transition-colors menu-link">В начало</a></li>
+            <li><a href="#gallery" class="hover:text-white transition-colors menu-link">Галерея</a></li>
+            <li><a href="#timer" class="hover:text-white transition-colors menu-link">Счетчик времени</a></li>
+            <li><a href="#toasts" class="hover:text-white transition-colors menu-link">Генератор тостов</a></li>
+            <li><a href="#calendar" class="hover:text-white transition-colors menu-link">Дата</a></li>
+            <li><a href="#program" class="hover:text-white transition-colors menu-link">Программа</a></li>
+            <li><a href="#location" class="hover:text-white transition-colors menu-link">Место проведения</a></li>
+            <li><a href="#rsvp" class="hover:text-white transition-colors menu-link">Подтвердить участие</a></li>
+        </ul>
+    </div>
+
     <!-- Музыкальный плеер -->
     <audio id="bg-music" loop preload="auto">
         <!-- Замените ссылку ниже на свою мелодию в формате mp3 -->
         <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_d0a13f69d2.mp3" type="audio/mpeg">
     </audio>
     
-    <!-- Переключатель музыки -->
-    <div id="music-toggle-container" class="fixed top-5 right-5 z-50 flex items-center gap-3 glass-card px-4 py-2 rounded-full cursor-pointer hover:bg-white/10 transition-colors shadow-lg">
-        <span class="text-xs font-bold uppercase tracking-widest text-white/80 select-none">Музыка</span>
+    <!-- Переключатель музыки и автотура -->
+    <div id="music-toggle-container" class="fixed top-5 right-5 z-50 flex items-center glass-card p-2 rounded-full cursor-pointer hover:bg-white/10 transition-colors shadow-lg">
         <div id="music-switch-bg" class="w-12 h-6 bg-white/20 rounded-full relative transition-colors duration-300">
             <div id="music-switch-knob" class="w-4 h-4 bg-white rounded-full absolute top-1 left-1 transition-transform duration-300 shadow-md"></div>
         </div>
     </div>
 
     <div class="w-full max-w-[100vw] overflow-x-hidden relative">
-        <section class="min-h-screen flex flex-col items-center justify-center p-6 text-center relative">
+        <section id="welcome" class="min-h-screen flex flex-col items-center justify-center p-6 text-center relative">
             <div class="decor-ring w-64 h-64 top-10 left-10 md:w-96 md:h-96 md:-top-10 md:-left-20" data-aos="zoom-out" data-aos-delay="1800" data-aos-duration="3000"></div>
-        <div class="decor-spark top-1/4 right-1/4" data-aos="zoom-in" data-aos-delay="2500">✦</div>
-        <div class="decor-spark bottom-1/3 left-1/4 scale-75" data-aos="zoom-in" data-aos-delay="2800">✦</div>
+            <div class="decor-spark top-1/4 right-1/4" data-aos="zoom-in" data-aos-delay="2500">✦</div>
+            <div class="decor-spark bottom-1/3 left-1/4 scale-75" data-aos="zoom-in" data-aos-delay="2800">✦</div>
 
-        <div class="max-w-xl w-full z-10 flex flex-col items-center relative">
-            <h1 class="text-5xl md:text-7xl title-font mb-2 gold-text" data-aos="fade-down" data-aos-duration="1500">
-                Юбилей Александра
-            </h1>
-            <div class="mb-6" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1200">
-                <span class="text-6xl md:text-8xl font-black gold-text tracking-tighter">45</span>
-                <span class="block text-sm uppercase tracking-[0.5em] opacity-60 -mt-2">Прекрасных лет</span>
-            </div>
-            <div class="photo-frame-main mb-10 mx-auto w-full max-w-[280px] md:max-w-[320px] aspect-[3/4]" data-aos="fade-up" data-aos-delay="600">
-                <img id="main-portrait" src="https://i.ibb.co/8DFwpD2g/009A2238.jpg" alt="Александр" class="w-full h-full object-cover">
-            </div>
-            <div data-aos="fade" data-aos-delay="1200">
-                <p class="text-xs opacity-40 uppercase tracking-[0.3em] mb-4 text-white">Листайте ниже</p>
-                <div class="animate-bounce text-yellow-500/50 flex justify-center">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14l-7 7-7-7m14-8l-7 7-7-7"></path></svg>
+            <div class="max-w-xl w-full z-10 flex flex-col items-center relative">
+                <h1 class="text-5xl md:text-7xl title-font mb-2 gold-text" data-aos="fade-down" data-aos-duration="1500">
+                    Юбилей Александра
+                </h1>
+                <div class="mb-6" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1200">
+                    <span class="text-6xl md:text-8xl font-black gold-text tracking-tighter">45</span>
+                    <span class="block text-sm uppercase tracking-[0.5em] opacity-60 -mt-2">Прекрасных лет</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- Автомобили по бокам (теперь видимы на мобильных) -->
-        <div class="absolute -left-10 md:left-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100" data-aos="drive-in-left" data-aos-easing="ease-out-cubic" data-aos-delay="1500" data-aos-duration="2500">
-            <img src="https://i.ibb.co/6cg57WP3/png-transparent-2009-nissan-gt-r-nissan-skyline-gt-r-sports-car-skyline-car-computer-wallpaper-perfo.png" alt="Ниссан" class="w-56 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
-        </div>
-        <div class="absolute -right-10 md:right-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100" data-aos="drive-in-right" data-aos-easing="ease-out-cubic" data-aos-delay="1800" data-aos-duration="2500">
-            <img src="https://i.ibb.co/Fbzfg8nf/png-transparent-2015-ferrari-458-italia-2014-ferrari-458-italia-ferrari-f430-2013-ferrari-458-italia.png" alt="Феррари" class="w-56 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
-        </div>
-    </section>
-
-    <div class="relative z-10">
-        <section class="py-32 px-6 max-w-5xl mx-auto space-y-48">
-            <!-- Блок Приветствие -->
-            <div class="grid md:grid-cols-2 gap-16 items-center relative">
-                <div class="floating-orb -top-20 -left-20" data-aos="zoom-in"></div>
-                
-                <div data-aos="fade-right">
-                    <h2 class="text-4xl title-font gold-text mb-6">Дорогие друзья!</h2>
-                    <p class="text-lg text-white/70 leading-relaxed font-light mb-6">
-                        45 лет — это время, когда мудрость встречается с энергией, а мечты становятся планами. Я хочу разделить этот важный момент с вами.
-                    </p>
-                    <p class="text-lg text-white/70 leading-relaxed font-light italic border-l-2 border-yellow-500/30 pl-6">
-                        "В 45 жизнь только начинает играть самыми яркими красками".
-                    </p>
+                <div class="photo-frame-main mb-10 mx-auto w-full max-w-[280px] md:max-w-[320px] aspect-[3/4]" data-aos="fade-up" data-aos-delay="600">
+                    <img id="main-portrait" src="https://i.ibb.co/8DFwpD2g/009A2238.jpg" alt="Александр" class="w-full h-full object-cover">
                 </div>
-                <div class="photo-frame aspect-square group overflow-hidden relative" data-aos="fade-left" data-aos-delay="200">
-                    <img src="https://i.ibb.co/gZxPTkXd/d4e7cc64-7cd1-4c76-871f-9fd10e6b4545.jpg" class="w-full h-full object-cover">
-                    <div class="absolute inset-4 border border-yellow-500/30 rounded-xl"></div>
-                </div>
-            </div>
-
-            <!-- Галерея (С наклоном фоток) -->
-            <div class="space-y-12 relative">
-                <h2 class="text-4xl title-font gold-text text-center mb-12" data-aos="fade-up">Листая страницы памяти</h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 gallery-grid">
-                    <!-- Старые 6 фото -->
-                    <div data-aos="fade-up-right">
-                        <div class="photo-frame aspect-square transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.ibb.co/YTyNW0R6/FEswpd-XGJ0t-DS8n-WYl90lhm8-D73j-vl-FZZ95i9f-Prj-Ca-JAu0-P0-Yw-FRr-NOWcpketm-GGH5-Mypw-WEoyv-F8-Xd138-XV5.jpg" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="fade-down">
-                        <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.ibb.co/35NKxsgJ/20110812151.jpg" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="fade-up-left">
-                        <div class="photo-frame aspect-square transform -rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.ibb.co/DPyLwvJF/26-09-09-1427.jpg" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in-right">
-                        <div class="photo-frame aspect-square transform rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.ibb.co/N2wkJrP5/3-129.jpg" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in">
-                        <div class="photo-frame aspect-square transform -rotate-1 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.ibb.co/Kxq64Jp5/fa68ce92-8e0c-4cbf-bfd5-0fff8e917d41.jpg" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in-left">
-                        <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.ibb.co/gZxPTkXd/d4e7cc64-7cd1-4c76-871f-9fd10e6b4545.jpg" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-
-                    <!-- Новые 6 фото -->
-                    <div data-aos="fade-up-right">
-                        <div class="photo-frame aspect-square transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://vki4.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1J95SBLDlakvx5f3p4qeC_AAwM9WMqqN45kpm22Uoa3gGxzyQ0vDTiwuweu7AoE1vCEPcSeHrEnbrjev9ApS9bJ3XfMISsZJNjxHsZgrt4AAAAp" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="fade-down">
-                        <div class="photo-frame aspect-square transform rotate-1 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1Iya7OrsioXvx8J4hEyGrdx3Gs7NIRA8PajEeNio_KT7HJQpwBp6XH1SiR8SuTzdZylNo_SnhHYkwFgiS142ufrGyE74w11vQaJ2cqCSSYAAAAp" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="fade-up-left">
-                        <div class="photo-frame aspect-square transform -rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1JQVRDYv1uWuOSYnZL4mRYfp5v09C7qGOA4QNr3HIed31tm09adnZsMM7aYxtLwMPygHmrDjBKY4oHFyUc5dyUc8Dy65umDhKjh65-GXe0AAAAp" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in-right">
-                        <div class="photo-frame aspect-square transform rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1IeYNI9KhFF0ySXQ55VZLnIpG9VVzJCY7VdZG3FFdFyhXvQWiZ6_GL07mQDHoAmIALpyIOebnHRzXLIWSaVyXERZGRyLgfu_4PQyb61ruoAAAAp" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in">
-                        <div class="photo-frame aspect-square transform -rotate-1 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.ibb.co/B28sv1NQ/0a-Mg0-R-vu-WQVljdd-U7ct-Vgg-U3-Sn-IVodr-Imfq-Ba-Wkh-Hlmg9sm-DDt-U7-GV-dfo-PMi5lokt-ZYJpbxh1-WLEdh74-HGi.jpg" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in-left">
-                        <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
-                            <img src="https://i.ibb.co/k6KWpkmL/photo-5264784033018133959-y.jpg" class="w-full h-full object-cover">
-                        </div>
+                <div data-aos="fade" data-aos-delay="1200">
+                    <p class="text-xs opacity-40 uppercase tracking-[0.3em] mb-4 text-white">Листайте ниже</p>
+                    <div class="animate-bounce text-yellow-500/50 flex justify-center">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14l-7 7-7-7m14-8l-7 7-7-7"></path></svg>
                     </div>
                 </div>
             </div>
 
-            <!-- Календарь -->
-            <div class="py-20 relative" data-aos="fade-up" id="salute-trigger">
-                <div class="text-center mb-10">
-                    <h2 class="text-4xl title-font gold-text mb-2">Запомните эту дату</h2>
-                    <p class="opacity-50 uppercase tracking-widest text-xs">Июнь 2026</p>
-                </div>
-                
-                <div class="glass-card p-10 max-w-md mx-auto">
-                    <div class="calendar-container">
-                        <div class="calendar-grid">
-                            <div class="calendar-day calendar-header-day">Пн</div>
-                            <div class="calendar-day calendar-header-day">Вт</div>
-                            <div class="calendar-day calendar-header-day">Ср</div>
-                            <div class="calendar-day calendar-header-day">Чт</div>
-                            <div class="calendar-day calendar-header-day">Пт</div>
-                            <div class="calendar-day calendar-header-day">Сб</div>
-                            <div class="calendar-day calendar-header-day">Вс</div>
-                            
-                            <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div>
-                            <div class="calendar-day active" data-aos="zoom-in" data-aos-delay="500">6</div>
-                            <div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Автомобили по бокам -->
+            <div class="absolute -left-10 md:left-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100" data-aos="drive-in-left" data-aos-easing="ease-out-cubic" data-aos-delay="1500" data-aos-duration="2500">
+                <img src="https://i.ibb.co/6cg57WP3/png-transparent-2009-nissan-gt-r-nissan-skyline-gt-r-sports-car-skyline-car-computer-wallpaper-perfo.png" alt="Ниссан" class="w-56 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
             </div>
-
-            <!-- Текст-обращение -->
-            <div class="text-center max-w-2xl mx-auto px-4" data-aos="zoom-in">
-                <p class="text-xl md:text-2xl font-light leading-relaxed italic text-white/80">
-                    Буду безмерно рад видеть каждого из вас! Давайте вместе создадим воспоминания, которые останутся с нами навсегда. Готовьтесь к душевному вечеру, танцам и отличной компании!
-                </p>
-            </div>
-
-            <!-- Программа -->
-            <div class="glass-card p-8 md:p-16 border-white/5 relative overflow-hidden" data-aos="zoom-in">
-                <div class="decor-ring w-96 h-96 -top-20 -left-20 opacity-20" data-aos="fade-down-right" data-aos-delay="1000" data-aos-duration="2500"></div>
-                <div class="decor-spark top-10 right-20" data-aos="fade-in" data-aos-delay="1500">✦</div>
-
-                <h2 class="text-4xl title-font gold-text text-center mb-16 relative z-10">Программа вечера</h2>
-                <div class="grid gap-12 max-w-2xl mx-auto relative z-10">
-                    <div class="flex items-center gap-8" data-aos="fade-right">
-                        <div class="text-3xl font-bold gold-text w-24 shrink-0">16:30</div>
-                        <div class="h-px bg-white/10 grow relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" data-aos="zoom-in" data-aos-delay="1200" data-aos-duration="1500"></div>
-                        </div>
-                        <div class="text-right">
-                            <h3 class="text-xl font-bold uppercase tracking-widest">Welcome</h3>
-                            <p class="text-sm opacity-50">Встреча гостей и живая музыка</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-8" data-aos="fade-left">
-                        <div class="text-3xl font-bold gold-text w-24 shrink-0">17:00</div>
-                        <div class="h-px bg-white/10 grow relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" data-aos="zoom-in" data-aos-delay="1400" data-aos-duration="1500"></div>
-                        </div>
-                        <div class="text-right">
-                            <h3 class="text-xl font-bold uppercase tracking-widest">Банкет</h3>
-                            <p class="text-sm opacity-50">Торжественная часть</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Локация -->
-            <div class="glass-card p-10 text-center relative overflow-hidden" data-aos="fade-up">
-                <div class="decor-ring w-[120%] h-[120%] -top-[10%] -left-[10%] opacity-10" data-aos="zoom-out" data-aos-delay="1000" data-aos-duration="3000"></div>
-
-                <h2 class="text-3xl title-font gold-text mb-6 relative z-10">Жду вас здесь</h2>
-                <p class="text-2xl mb-2 font-bold uppercase tracking-wider relative z-10">Банкет-холл «Мишель»</p>
-                <p class="text-lg opacity-60 mb-10 relative z-10">пр. Ленина, 154А, г. Барнаул</p>
-                <div class="photo-frame h-80 w-full shadow-2xl relative z-10">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2346.545678912345!2d83.743210!3d53.364567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x42df468e8e8e8e8e%3A0x1234567890abcdef!2z0L_RgC3Rgi4g0JvQtdC90LjQvdCwLCAxNTRBLCDQkdCw0YDQvdCw0YPQuywg0JDQu9GC0LDQudGB0LrQuNC5INC60YDQsNC5LCA2NTYwMDU!5e0!3m2!1sru!2sru!4v1711234567890!5m2!1sru!2sru" 
-                        width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(0.6);" allowfullscreen="" loading="lazy">
-                    </iframe>
-                    <div class="absolute inset-0 border-2 border-yellow-500/20 pointer-events-none" data-aos="fade-in" data-aos-delay="1500" data-aos-duration="2000"></div>
-                </div>
+            <div class="absolute -right-10 md:right-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100" data-aos="drive-in-right" data-aos-easing="ease-out-cubic" data-aos-delay="1800" data-aos-duration="2500">
+                <img src="https://i.ibb.co/Fbzfg8nf/png-transparent-2015-ferrari-458-italia-2014-ferrari-458-italia-ferrari-f430-2013-ferrari-458-italia.png" alt="Феррари" class="w-56 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
             </div>
         </section>
 
-        <!-- Кнопка RSVP -->
-        <section class="py-48 px-6 text-center relative">
-            <div class="decor-spark top-1/4 left-1/3" data-aos="fade-up" data-aos-delay="1000">✦</div>
-            <div class="decor-spark top-1/2 right-1/3 scale-150" data-aos="fade-up" data-aos-delay="1400">✦</div>
+        <div class="relative z-10">
+            <section class="py-32 px-6 max-w-5xl mx-auto space-y-48">
+                <!-- Блок Приветствие -->
+                <div class="grid md:grid-cols-2 gap-16 items-center relative">
+                    <div class="floating-orb -top-20 -left-20" data-aos="zoom-in"></div>
+                    
+                    <div data-aos="fade-right">
+                        <h2 class="text-4xl title-font gold-text mb-6">Дорогие друзья!</h2>
+                        <p class="text-lg text-white/70 leading-relaxed font-light mb-6">
+                            45 лет — это время, когда мудрость встречается с энергией, а мечты становятся планами. Я хочу разделить этот важный момент с вами.
+                        </p>
+                        <p class="text-lg text-white/70 leading-relaxed font-light italic border-l-2 border-yellow-500/30 pl-6">
+                            "В 45 жизнь только начинает играть самыми яркими красками".
+                        </p>
+                    </div>
+                    <div class="photo-frame aspect-square group overflow-hidden relative" data-aos="fade-left" data-aos-delay="200">
+                        <img src="https://i.ibb.co/gZxPTkXd/d4e7cc64-7cd1-4c76-871f-9fd10e6b4545.jpg" class="w-full h-full object-cover">
+                        <div class="absolute inset-4 border border-yellow-500/30 rounded-xl"></div>
+                    </div>
+                </div>
+
+                <!-- Галерея -->
+                <div id="gallery" class="space-y-12 relative scroll-mt-20">
+                    <h2 class="text-4xl title-font gold-text text-center mb-12" data-aos="fade-up">Листая страницы памяти</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 gallery-grid">
+                        <!-- Старые 6 фото -->
+                        <div data-aos="fade-up-right">
+                            <div class="photo-frame aspect-square transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.ibb.co/YTyNW0R6/FEswpd-XGJ0t-DS8n-WYl90lhm8-D73j-vl-FZZ95i9f-Prj-Ca-JAu0-P0-Yw-FRr-NOWcpketm-GGH5-Mypw-WEoyv-F8-Xd138-XV5.jpg" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="fade-down">
+                            <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.ibb.co/35NKxsgJ/20110812151.jpg" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="fade-up-left">
+                            <div class="photo-frame aspect-square transform -rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.ibb.co/DPyLwvJF/26-09-09-1427.jpg" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="zoom-in-right">
+                            <div class="photo-frame aspect-square transform rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.ibb.co/N2wkJrP5/3-129.jpg" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="zoom-in">
+                            <div class="photo-frame aspect-square transform -rotate-1 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.ibb.co/Kxq64Jp5/fa68ce92-8e0c-4cbf-bfd5-0fff8e917d41.jpg" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="zoom-in-left">
+                            <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.ibb.co/gZxPTkXd/d4e7cc64-7cd1-4c76-871f-9fd10e6b4545.jpg" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+
+                        <!-- Новые 6 фото -->
+                        <div data-aos="fade-up-right">
+                            <div class="photo-frame aspect-square transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://vki4.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1J95SBLDlakvx5f3p4qeC_AAwM9WMqqN45kpm22Uoa3gGxzyQ0vDTiwuweu7AoE1vCEPcSeHrEnbrjev9ApS9bJ3XfMISsZJNjxHsZgrt4AAAAp" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="fade-down">
+                            <div class="photo-frame aspect-square transform rotate-1 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1Iya7OrsioXvx8J4hEyGrdx3Gs7NIRA8PajEeNio_KT7HJQpwBp6XH1SiR8SuTzdZylNo_SnhHYkwFgiS142ufrGyE74w11vQaJ2cqCSSYAAAAp" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="fade-up-left">
+                            <div class="photo-frame aspect-square transform -rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1JQVRDYv1uWuOSYnZL4mRYfp5v09C7qGOA4QNr3HIed31tm09adnZsMM7aYxtLwMPygHmrDjBKY4oHFyUc5dyUc8Dy65umDhKjh65-GXe0AAAAp" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="zoom-in-right">
+                            <div class="photo-frame aspect-square transform rotate-3 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.okcdn.ru/i?r=CFtAm_VFBkioSGBqh1IeYNI9KhFF0ySXQ55VZLnIpG9VVzJCY7VdZG3FFdFyhXvQWiZ6_GL07mQDHoAmIALpyIOebnHRzXLIWSaVyXERZGRyLgfu_4PQyb61ruoAAAAp" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="zoom-in">
+                            <div class="photo-frame aspect-square transform -rotate-1 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.ibb.co/B28sv1NQ/0a-Mg0-R-vu-WQVljdd-U7ct-Vgg-U3-Sn-IVodr-Imfq-Ba-Wkh-Hlmg9sm-DDt-U7-GV-dfo-PMi5lokt-ZYJpbxh1-WLEdh74-HGi.jpg" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div data-aos="zoom-in-left">
+                            <div class="photo-frame aspect-square transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-10 transition-all duration-300 shadow-lg">
+                                <img src="https://i.ibb.co/k6KWpkmL/photo-5264784033018133959-y.jpg" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Счетчик времени -->
+                <div id="timer" class="py-20 relative z-10 scroll-mt-20" data-aos="fade-up">
+                    <div class="text-center mb-10">
+                        <h2 class="text-4xl title-font gold-text mb-2">До торжества осталось</h2>
+                        <p class="opacity-50 uppercase tracking-widest text-xs">Готовимся к празднику</p>
+                    </div>
+                    <div class="glass-card p-6 md:p-10 max-w-3xl mx-auto flex justify-center gap-2 md:gap-8 text-center shadow-2xl">
+                        <div>
+                            <div id="t-days" class="text-4xl md:text-6xl font-black gold-text">00</div>
+                            <div class="text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-2">Дней</div>
+                        </div>
+                        <div class="text-4xl md:text-6xl font-black gold-text opacity-30">:</div>
+                        <div>
+                            <div id="t-hours" class="text-4xl md:text-6xl font-black gold-text">00</div>
+                            <div class="text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-2">Часов</div>
+                        </div>
+                        <div class="text-4xl md:text-6xl font-black gold-text opacity-30">:</div>
+                        <div>
+                            <div id="t-minutes" class="text-4xl md:text-6xl font-black gold-text">00</div>
+                            <div class="text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-2">Минут</div>
+                        </div>
+                        <div class="text-4xl md:text-6xl font-black gold-text opacity-30 hidden sm:block">:</div>
+                        <div class="hidden sm:block">
+                            <div id="t-seconds" class="text-4xl md:text-6xl font-black gold-text">00</div>
+                            <div class="text-[10px] md:text-xs uppercase tracking-widest opacity-50 mt-2">Секунд</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Генератор тостов -->
+                <div id="toasts" class="py-10 relative z-10 scroll-mt-20" data-aos="fade-up">
+                    <div class="text-center mb-10">
+                        <h2 class="text-4xl title-font gold-text mb-2">Шпаргалка для тоста</h2>
+                        <p class="opacity-50 uppercase tracking-widest text-xs">Идеальные слова для Александра</p>
+                    </div>
+                    <div class="glass-card p-8 md:p-12 max-w-2xl mx-auto text-center shadow-2xl flex flex-col items-center justify-center min-h-[300px]">
+                        <p id="toast-text" class="text-lg md:text-xl font-light italic mb-10 text-white/90 transition-all duration-300">
+                            Нажмите на кнопку, чтобы получить отличный тост!
+                        </p>
+                        <button onclick="generateToast()" class="px-8 py-4 bg-yellow-500 text-black font-bold uppercase tracking-widest rounded-full hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(234,179,8,0.3)] active:scale-95">
+                            Получить тост
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Календарь -->
+                <div id="calendar" class="py-20 relative scroll-mt-20" data-aos="fade-up" id="salute-trigger">
+                    <div class="text-center mb-10">
+                        <h2 class="text-4xl title-font gold-text mb-2">Запомните эту дату</h2>
+                        <p class="opacity-50 uppercase tracking-widest text-xs">Июнь 2026</p>
+                    </div>
+                    
+                    <div class="glass-card p-10 max-w-md mx-auto">
+                        <div class="calendar-container">
+                            <div class="calendar-grid">
+                                <div class="calendar-day calendar-header-day">Пн</div>
+                                <div class="calendar-day calendar-header-day">Вт</div>
+                                <div class="calendar-day calendar-header-day">Ср</div>
+                                <div class="calendar-day calendar-header-day">Чт</div>
+                                <div class="calendar-day calendar-header-day">Пт</div>
+                                <div class="calendar-day calendar-header-day">Сб</div>
+                                <div class="calendar-day calendar-header-day">Вс</div>
+                                
+                                <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div>
+                                <div class="calendar-day active" data-aos="zoom-in" data-aos-delay="500">6</div>
+                                <div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Текст-обращение -->
+                <div class="text-center max-w-2xl mx-auto px-4" data-aos="zoom-in">
+                    <p class="text-xl md:text-2xl font-light leading-relaxed italic text-white/80">
+                        Буду безмерно рад видеть каждого из вас! Давайте вместе создадим воспоминания, которые останутся с нами навсегда. Готовьтесь к душевному вечеру, танцам и отличной компании!
+                    </p>
+                </div>
+
+                <!-- Программа -->
+                <div id="program" class="glass-card p-8 md:p-16 border-white/5 relative overflow-hidden scroll-mt-20" data-aos="zoom-in">
+                    <div class="decor-ring w-96 h-96 -top-20 -left-20 opacity-20" data-aos="fade-down-right" data-aos-delay="1000" data-aos-duration="2500"></div>
+                    <div class="decor-spark top-10 right-20" data-aos="fade-in" data-aos-delay="1500">✦</div>
+
+                    <h2 class="text-4xl title-font gold-text text-center mb-16 relative z-10">Программа вечера</h2>
+                    <div class="grid gap-12 max-w-2xl mx-auto relative z-10">
+                        <div class="flex items-center gap-8" data-aos="fade-right">
+                            <div class="text-3xl font-bold gold-text w-24 shrink-0">16:30</div>
+                            <div class="h-px bg-white/10 grow relative">
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" data-aos="zoom-in" data-aos-delay="1200" data-aos-duration="1500"></div>
+                            </div>
+                            <div class="text-right">
+                                <h3 class="text-xl font-bold uppercase tracking-widest">Welcome</h3>
+                                <p class="text-sm opacity-50">Встреча гостей и живая музыка</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-8" data-aos="fade-left">
+                            <div class="text-3xl font-bold gold-text w-24 shrink-0">17:00</div>
+                            <div class="h-px bg-white/10 grow relative">
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" data-aos="zoom-in" data-aos-delay="1400" data-aos-duration="1500"></div>
+                            </div>
+                            <div class="text-right">
+                                <h3 class="text-xl font-bold uppercase tracking-widest">Банкет</h3>
+                                <p class="text-sm opacity-50">Торжественная часть</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Локация -->
+                <div id="location" class="glass-card p-10 text-center relative overflow-hidden scroll-mt-20" data-aos="fade-up">
+                    <div class="decor-ring w-[120%] h-[120%] -top-[10%] -left-[10%] opacity-10" data-aos="zoom-out" data-aos-delay="1000" data-aos-duration="3000"></div>
+
+                    <h2 class="text-3xl title-font gold-text mb-6 relative z-10">Жду вас здесь</h2>
+                    <p class="text-2xl mb-2 font-bold uppercase tracking-wider relative z-10">Банкет-холл «Мишель»</p>
+                    <p class="text-lg opacity-60 mb-10 relative z-10">пр. Ленина, 154А, г. Барнаул</p>
+                    <div class="photo-frame h-80 w-full shadow-2xl relative z-10">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2346.545678912345!2d83.743210!3d53.364567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x42df468e8e8e8e8e%3A0x1234567890abcdef!2z0L_RgC3Rgi4g0JvQtdC90LjQvdCwLCAxNTRBLCDQkdCw0YDQvdCw0YPQuywg0JDQu9GC0LDQudGB0LrQuNC5INC60YDQsNC5LCA2NTYwMDU!5e0!3m2!1sru!2sru!4v1711234567890!5m2!1sru!2sru" 
+                            width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(0.6);" allowfullscreen="" loading="lazy">
+                        </iframe>
+                        <div class="absolute inset-0 border-2 border-yellow-500/20 pointer-events-none" data-aos="fade-in" data-aos-delay="1500" data-aos-duration="2000"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Кнопка RSVP -->
+            <section id="rsvp" class="py-48 px-6 text-center relative scroll-mt-20">
+                <div class="decor-spark top-1/4 left-1/3" data-aos="fade-up" data-aos-delay="1000">✦</div>
+                <div class="decor-spark top-1/2 right-1/3 scale-150" data-aos="fade-up" data-aos-delay="1400">✦</div>
+                
+                <div class="max-w-md mx-auto relative z-10" data-aos="zoom-out-up">
+                    <button onclick="openModal('rsvp-modal')" class="w-full px-12 py-7 bg-yellow-500 text-black font-black uppercase tracking-[0.2em] rounded-full transition-all hover:bg-yellow-400 hover:scale-105 shadow-[0_25px_80px_rgba(234,179,8,0.4)]">
+                        Подтвердить участие
+                    </button>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Футер с секретами -->
+        <div class="flex justify-center items-center gap-8 py-10 relative z-10">
+            <!-- Тайная пасхалка -->
+            <button onclick="openEasterEgg()" class="text-3xl opacity-40 hover:opacity-100 transition-opacity cursor-pointer animate-pulse" title="Секрет">
+                👑
+            </button>
             
-            <div class="max-w-md mx-auto relative z-10" data-aos="zoom-out-up">
-                <button onclick="openModal('rsvp-modal')" class="w-full px-12 py-7 bg-yellow-500 text-black font-black uppercase tracking-[0.2em] rounded-full transition-all hover:bg-yellow-400 hover:scale-105 shadow-[0_25px_80px_rgba(234,179,8,0.4)]">
-                    Подтвердить участие
-                </button>
-            </div>
-        </section>
-    </div>
-        <!-- Админка (Замочек) -->
-        <div class="py-10 text-center opacity-20 hover:opacity-100 transition-opacity relative z-10">
-            <button onclick="openModal('auth-modal')" class="p-4 rounded-full border border-white/10 hover:border-yellow-500/50 text-white">
+            <!-- Админка (Замочек) -->
+            <button onclick="openModal('auth-modal')" class="p-4 rounded-full border border-white/10 hover:border-yellow-500/50 text-white opacity-20 hover:opacity-100 transition-opacity">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
             </button>
         </div>
@@ -554,6 +627,21 @@
         </div>
     </div>
 
+    <!-- Модальное окно Пасхалки -->
+    <div id="easter-egg-modal" class="modal">
+        <div class="max-w-sm w-full glass-card p-10 text-center relative">
+            <button onclick="closeModal('easter-egg-modal')" class="absolute top-6 right-6 text-white/30 hover:text-white">✕</button>
+            <div class="mb-4"><span class="text-6xl">🎉</span></div>
+            <h2 class="text-3xl title-font gold-text mb-4">Вы нашли пасхалку!</h2>
+            <p class="text-sm opacity-80 font-light mb-6">Ваша внимательность вознаграждается.</p>
+            <div class="p-5 border border-yellow-500/30 rounded-xl bg-yellow-500/10">
+                <p class="text-yellow-500 font-bold uppercase tracking-wider text-xs mb-2">Ваш приз:</p>
+                <p class="text-lg font-medium">Крепкие объятия от именинника!</p>
+            </div>
+            <p class="opacity-40 text-[10px] uppercase tracking-widest mt-6">Покажите этот экран при встрече 😉</p>
+        </div>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -563,8 +651,7 @@
         let useAuth = false;
         let firebaseConfig;
 
-        // "Умная" настройка: если запущено в нашей тестовой среде - используем ее правила,
-        // если код скопирован к вам на хостинг - используем напрямую ВАШУ базу yubiley-a0d93
+        // "Умная" настройка
         if (typeof __firebase_config !== 'undefined') {
             firebaseConfig = JSON.parse(__firebase_config);
             const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
@@ -605,6 +692,68 @@
         }
 
         AOS.init({ duration: 1000, once: false, mirror: true });
+
+        // --- Навигация и Меню ---
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        menuBtn.addEventListener('click', () => navMenu.classList.remove('-translate-x-full'));
+        closeMenuBtn.addEventListener('click', () => navMenu.classList.add('-translate-x-full'));
+        
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.add('-translate-x-full');
+            });
+        });
+
+        // --- Генератор тостов ---
+        const toastsArray = [
+            "За те 45 лет, что мир знает Александра, он стал только лучше — как дорогое коллекционное вино! За юбиляра!",
+            "Говорят, в 45 мужчины становятся настоящими коньяками: крепкими, выдержанными и согревающими душу! За Александра!",
+            "Желаю, чтобы в 45 у тебя было здоровье как в 25, энергия как в 15, а мудрость оставалась на свои 45. С Днем Рождения!",
+            "45 — это идеальный возраст: опыт уже есть, а порох в пороховницах еще ого-го! За новые горизонты!",
+            "Александр! Пусть твоя внутренняя батарейка никогда не садится, а жизненный бензобак всегда будет полон! За тебя!",
+            "Поднимем бокалы за человека, чья душа всегда нараспашку, а сердце полно доброты. За лучшего из лучших!",
+            "В 45 жизнь только начинает играть самыми яркими красками! Желаю тебе нарисовать ими настоящий шедевр!"
+        ];
+
+        window.generateToast = () => {
+            const textEl = document.getElementById('toast-text');
+            textEl.style.opacity = 0;
+            textEl.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                const randomToast = toastsArray[Math.floor(Math.random() * toastsArray.length)];
+                textEl.innerText = `«${randomToast}»`;
+                textEl.style.opacity = 1;
+                textEl.style.transform = 'scale(1)';
+            }, 300);
+        };
+
+        // --- Таймер Обратного Отсчета ---
+        // Устанавливаем дату: 6 июня 2026 года 16:30
+        const targetDate = new Date('2026-06-06T16:30:00').getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if(distance < 0) return; // Если время вышло, останавливаем
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('t-days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('t-hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('t-minutes').innerText = minutes.toString().padStart(2, '0');
+            
+            const secondsEl = document.getElementById('t-seconds');
+            if(secondsEl) secondsEl.innerText = seconds.toString().padStart(2, '0');
+        }, 1000);
 
         window.onload = () => {
             const portrait = document.getElementById('main-portrait');
@@ -657,12 +806,44 @@
         };
         animate();
 
-        // --- Музыка ---
+        // --- Музыка и Автопрокрутка ---
         const music = document.getElementById('bg-music');
         const musicToggleContainer = document.getElementById('music-toggle-container');
         const switchBg = document.getElementById('music-switch-bg');
         const switchKnob = document.getElementById('music-switch-knob');
         let isMusicPlaying = false;
+        
+        let autoScrollFrame;
+        let isAutoScrolling = false;
+        let lastScrollTime = 0;
+        const scrollSpeed = 50; 
+
+        const autoScrollStep = (timestamp) => {
+            if (!isAutoScrolling) return;
+            if (!lastScrollTime) lastScrollTime = timestamp;
+            const delta = timestamp - lastScrollTime;
+            lastScrollTime = timestamp;
+            
+            window.scrollBy(0, (scrollSpeed * delta) / 1000);
+            
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
+                isAutoScrolling = false;
+                return;
+            }
+            autoScrollFrame = requestAnimationFrame(autoScrollStep);
+        };
+
+        const stopAutoScroll = () => {
+            isAutoScrolling = false;
+            cancelAnimationFrame(autoScrollFrame);
+            lastScrollTime = 0;
+        };
+
+        ['wheel', 'touchstart', 'mousedown', 'keydown'].forEach(evt => {
+            window.addEventListener(evt, () => {
+                if (isAutoScrolling) stopAutoScroll(); 
+            }, { passive: true });
+        });
 
         const toggleMusic = () => {
             if (isMusicPlaying) {
@@ -670,28 +851,37 @@
                 switchBg.classList.remove('bg-yellow-500');
                 switchBg.classList.add('bg-white/20');
                 switchKnob.classList.remove('translate-x-6');
+                stopAutoScroll();
             } else {
                 music.play().catch(e => console.log('Autoplay prevented', e));
                 switchBg.classList.remove('bg-white/20');
                 switchBg.classList.add('bg-yellow-500');
                 switchKnob.classList.add('translate-x-6');
+                
+                stopAutoScroll(); 
+                isAutoScrolling = true;
+                lastScrollTime = 0;
+                autoScrollFrame = requestAnimationFrame(autoScrollStep);
             }
             isMusicPlaying = !isMusicPlaying;
         };
 
         musicToggleContainer.addEventListener('click', (e) => {
-            e.stopPropagation(); // предотвращаем двойное срабатывание при первом клике
+            e.stopPropagation();
             toggleMusic();
         });
 
-        // Включение по первому клику на странице
-        document.body.addEventListener('click', () => {
-            if (!isMusicPlaying && music.paused) {
-                toggleMusic();
+        document.body.addEventListener('click', (e) => {
+            if (!isMusicPlaying && music.paused && !musicToggleContainer.contains(e.target) && !menuBtn.contains(e.target) && !navMenu.contains(e.target)) {
+                music.play().catch(e => console.log('Autoplay prevented', e));
+                switchBg.classList.remove('bg-white/20');
+                switchBg.classList.add('bg-yellow-500');
+                switchKnob.classList.add('translate-x-6');
+                isMusicPlaying = true;
             }
         }, { once: true });
 
-        // --- Салют (Срабатывает при прокрутке до календаря) ---
+        // --- Салют ---
         const launchSalute = () => {
             var duration = 3 * 1000;
             var animationEnd = Date.now() + duration;
@@ -708,7 +898,6 @@
             }, 250);
         };
 
-        // Отслеживание прокрутки до элемента для салюта
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -726,6 +915,17 @@
 
         window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.getElementById(id).classList.remove('active');
+
+        // --- Пасхалка ---
+        window.openEasterEgg = () => {
+            openModal('easter-egg-modal');
+            confetti({ 
+                particleCount: 200, 
+                spread: 120, 
+                origin: { y: 0.5 }, 
+                colors: ['#bf953f', '#fcf6ba', '#ff3e3e', '#ffffff'] 
+            });
+        };
 
         // Обработка формы
         document.addEventListener('submit', async (e) => {
@@ -753,7 +953,6 @@
                         guestData.userId = currentUser.uid;
                     }
 
-                    // Динамический выбор пути (для Canvas или для вашего Firebase)
                     let ref;
                     if (dbPath.includes('/')) {
                         const parts = dbPath.split('/');
