@@ -232,24 +232,26 @@
         .gallery-grid img { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
         .gallery-grid div:hover img { transform: scale(1.1); }
 
-        [data-aos="drive-in-left"] {
-            transform: translateX(-100%);
-            opacity: 0;
-            transition-property: transform, opacity;
-        }
-        [data-aos="drive-in-left"].aos-animate {
-            transform: translateX(calc(-40% + 15px));
-            opacity: 0.95;
+        @keyframes driveInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(calc(-40% + 15px)); opacity: 0.95; }
         }
 
-        [data-aos="drive-in-right"] {
-            transform: translateX(100%);
-            opacity: 0;
-            transition-property: transform, opacity;
+        @keyframes driveInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(calc(40% - 15px)); opacity: 0.95; }
         }
-        [data-aos="drive-in-right"].aos-animate {
-            transform: translateX(calc(40% - 15px));
-            opacity: 0.95;
+
+        .car-left {
+            animation: driveInLeft 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) 1.5s forwards;
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+
+        .car-right {
+            animation: driveInRight 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) 1.8s forwards;
+            opacity: 0;
+            transform: translateX(100%);
         }
 
         /* Анимация слов в облаке */
@@ -331,10 +333,10 @@
                 </div>
 
                 <!-- Автомобили по бокам -->
-                <div class="absolute -left-10 md:left-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100" data-aos="drive-in-left" data-aos-easing="ease-out-cubic" data-aos-delay="1500" data-aos-duration="2500">
+                <div class="absolute -left-10 md:left-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100 car-left">
                     <img src="https://i.ibb.co/6cg57WP3/png-transparent-2009-nissan-gt-r-nissan-skyline-gt-r-sports-car-skyline-car-computer-wallpaper-perfo.png" alt="Ниссан" class="w-56 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
                 </div>
-                <div class="absolute -right-10 md:right-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100" data-aos="drive-in-right" data-aos-easing="ease-out-cubic" data-aos-delay="1800" data-aos-duration="2500">
+                <div class="absolute -right-10 md:right-0 bottom-5 md:bottom-0 z-20 pointer-events-none opacity-60 md:opacity-100 car-right">
                     <img src="https://i.ibb.co/Fbzfg8nf/png-transparent-2015-ferrari-458-italia-2014-ferrari-458-italia-ferrari-f430-2013-ferrari-458-italia.png" alt="Феррари" class="w-56 md:w-[480px] lg:w-[675px] drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
                 </div>
             </section>
@@ -650,14 +652,9 @@
             </div>
         </div>
 
-        <!-- Футер с секретами (отображается на всех страницах внизу) -->
+        <!-- Футер с секретами -->
         <div class="flex justify-center items-center gap-8 py-10 relative z-10">
-            <!-- Тайная пасхалка -->
-            <button onclick="openEasterEgg()" class="text-4xl opacity-50 hover:opacity-100 transition-opacity cursor-pointer animate-pulse" title="Секрет">
-                👑
-            </button>
-            
-            <!-- Админка (Замочек) -->
+            <button onclick="openEasterEgg()" class="text-4xl opacity-50 hover:opacity-100 transition-opacity cursor-pointer animate-pulse" title="Секрет">👑</button>
             <button onclick="openModal('auth-modal')" class="p-4 rounded-full border border-white/10 hover:border-yellow-500/50 text-white opacity-20 hover:opacity-100 transition-opacity">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
             </button>
@@ -699,7 +696,7 @@
         </div>
     </div>
 
-    <!-- Список гостей -->
+    <!-- Панель управления -->
     <div id="admin-modal" class="modal">
         <div class="max-w-4xl w-full glass-card p-8 relative">
             <button onclick="closeModal('admin-modal')" class="absolute top-6 right-6 text-white/30 hover:text-white transition-colors">✕</button>
@@ -708,7 +705,8 @@
             <!-- Вкладки -->
             <div class="flex flex-wrap justify-center gap-2 mb-6 border-b border-white/10 pb-4">
                 <button onclick="switchAdminTab('guests')" id="tab-btn-guests" class="px-4 py-2 rounded-lg bg-yellow-500 text-black font-bold text-xs md:text-sm uppercase tracking-wider transition-colors">Гости</button>
-                <button onclick="switchAdminTab('archive')" id="tab-btn-archive" class="px-4 py-2 rounded-lg bg-transparent text-white/70 hover:bg-white/5 font-bold text-xs md:text-sm uppercase tracking-wider border border-white/20 transition-colors">Фотоархив</button>
+                <!-- Вкладка Архива жестко скрыта стилями изначально -->
+                <button onclick="switchAdminTab('archive')" id="tab-btn-archive" style="display: none;" class="px-4 py-2 rounded-lg bg-transparent text-white/70 hover:bg-white/5 font-bold text-xs md:text-sm uppercase tracking-wider border border-white/20 transition-colors">Фотоархив</button>
             </div>
 
             <!-- Контент: Гости -->
@@ -734,6 +732,14 @@
         </div>
     </div>
 
+    <!-- Модальное окно для просмотра увеличенного фото из архива -->
+    <div id="image-viewer-modal" class="modal" style="z-index: 200;">
+        <div class="relative w-full h-full flex items-center justify-center p-4">
+            <button onclick="closeModal('image-viewer-modal')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl md:text-4xl bg-black/50 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center z-10 transition-colors">✕</button>
+            <img id="viewer-image" src="" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl">
+        </div>
+    </div>
+
     <!-- Модальное окно Пасхалки -->
     <div id="easter-egg-modal" class="modal">
         <div class="max-w-sm w-full glass-card p-10 text-center relative">
@@ -754,15 +760,11 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         
-        let dbPath = 'guests';
         let useAuth = false;
         let firebaseConfig;
 
-        // "Умная" настройка Firebase
         if (typeof __firebase_config !== 'undefined') {
             firebaseConfig = JSON.parse(__firebase_config);
-            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-            dbPath = `artifacts/${appId}/public/data/guests`;
             useAuth = true;
         } else {
             firebaseConfig = {
@@ -800,33 +802,24 @@
 
         AOS.init({ duration: 1000, once: false, mirror: true });
 
-        // --- Навигация SPA (Многостраничность) ---
+        // --- Навигация SPA ---
         window.showPage = (pageId) => {
-            // Останавливаем автопрокрутку, если она включена
             if (window.stopAutoScrollFunc) window.stopAutoScrollFunc();
 
-            // Скрываем все секции страниц
             document.querySelectorAll('.page-section').forEach(el => {
                 el.classList.remove('block');
                 el.classList.add('hidden');
             });
-            // Показываем нужную
             const activePage = document.getElementById(pageId);
             if (activePage) {
                 activePage.classList.remove('hidden');
                 activePage.classList.add('block');
             }
             
-            // Закрываем меню
             document.getElementById('nav-menu').classList.add('-translate-x-full');
-            
-            // Прокручиваем наверх
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Перезапуск анимаций AOS для новых элементов
             setTimeout(() => AOS.refresh(), 100);
 
-            // Если открыли страницу ассоциаций, грузим их
             if (pageId === 'page-associations') {
                 window.loadAssociations();
             }
@@ -977,7 +970,6 @@
             cancelAnimationFrame(autoScrollFrame);
             lastScrollTime = 0;
         };
-        // Глобальный доступ для остановки при переключении страниц
         window.stopAutoScrollFunc = stopAutoScroll;
 
         ['wheel', 'touchstart', 'mousedown', 'keydown'].forEach(evt => {
@@ -1045,15 +1037,29 @@
         window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.getElementById(id).classList.remove('active');
 
-        // --- Пасхалка ---
+        // Модальное окно для увеличенного просмотра фото
+        window.openImageViewer = (url) => {
+            document.getElementById('viewer-image').src = url;
+            openModal('image-viewer-modal');
+        };
+
         window.openEasterEgg = () => {
             openModal('easter-egg-modal');
             confetti({ particleCount: 200, spread: 120, origin: { y: 0.5 }, colors: ['#bf953f', '#fcf6ba', '#ff3e3e', '#ffffff'] });
         };
 
-        // Вспомогательная функция для получения ссылки на коллекцию (Canvas/Firebase)
-        const getCollectionRef = () => {
-            let path = dbPath; // Всегда используем коллекцию guests, чтобы обойти блокировку безопасности!
+        // Вспомогательные функции для БД
+        const getCollectionPath = (collectionName) => {
+            if (typeof __firebase_config !== 'undefined') {
+                const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+                return `artifacts/${appId}/public/data/${collectionName}`; 
+            } else {
+                return collectionName; 
+            }
+        };
+
+        const getCollectionRef = (collectionName) => {
+            const path = getCollectionPath(collectionName);
             if (path.includes('/')) {
                 const parts = path.split('/');
                 return collection(db, parts[0], parts[1], parts[2], parts[3], parts[4]);
@@ -1070,166 +1076,99 @@
                 return;
             }
 
-            // 1. Форма RSVP
+            // 1. RSVP
             if (e.target && e.target.id === 'rsvp-form') {
                 e.preventDefault();
                 const btn = document.getElementById('submit-btn');
                 if(btn) { btn.disabled = true; btn.innerText = 'Отправка...'; }
-
                 try {
-                    const guestData = {
-                        recordType: 'rsvp', // Метка для БД
-                        name: document.getElementById('guest-name').value,
-                        type: document.getElementById('guest-type').value,
-                        ts: new Date().toISOString()
-                    };
+                    const guestData = { name: document.getElementById('guest-name').value, type: document.getElementById('guest-type').value, ts: new Date().toISOString() };
                     if (useAuth && currentUser) guestData.userId = currentUser.uid;
-
-                    await addDoc(getCollectionRef(), guestData);
-                    
+                    await addDoc(getCollectionRef('guests'), guestData);
                     document.getElementById('form-container-div').classList.add('hidden');
                     document.getElementById('success-container-div').classList.remove('hidden');
                     confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#bf953f', '#ffffff'] });
                 } catch (err) { 
-                    console.error(err);
-                    alert("Ошибка отправки! Пожалуйста, проверьте интернет.");
+                    console.error(err); alert("Ошибка отправки! Пожалуйста, проверьте интернет.");
                     if(btn) { btn.disabled = false; btn.innerText = 'Отправить'; }
                 }
             }
 
-            // 2. Форма Капсулы времени
+            // 2. Капсула
             if (e.target && e.target.id === 'capsule-form') {
                 e.preventDefault();
                 const btn = document.getElementById('capsule-btn');
                 if(btn) { btn.disabled = true; btn.innerText = 'Запечатываем...'; }
-
                 try {
-                    const capsuleData = {
-                        recordType: 'capsule', // Метка для БД
-                        name: document.getElementById('capsule-name').value,
-                        message: document.getElementById('capsule-message').value,
-                        ts: new Date().toISOString()
-                    };
+                    const capsuleData = { name: document.getElementById('capsule-name').value, message: document.getElementById('capsule-message').value, ts: new Date().toISOString() };
                     if (useAuth && currentUser) capsuleData.userId = currentUser.uid;
-
-                    await addDoc(getCollectionRef(), capsuleData);
-                    
+                    await addDoc(getCollectionRef('timecapsule'), capsuleData);
                     document.getElementById('capsule-form-div').classList.add('hidden');
                     document.getElementById('capsule-success-div').classList.remove('hidden');
                     confetti({ particleCount: 100, spread: 60, origin: { y: 0.6 }, colors: ['#bf953f', '#fcf6ba'] });
                 } catch (err) { 
-                    console.error(err);
-                    alert("Не удалось запечатать капсулу! Проверьте интернет.");
+                    console.error(err); alert("Не удалось запечатать капсулу! Проверьте интернет.");
                     if(btn) { btn.disabled = false; btn.innerText = 'Запечатать капсулу'; }
                 }
             }
 
-            // 3. Форма Ассоциаций
+            // 3. Ассоциации
             if (e.target && e.target.id === 'assoc-form') {
                 e.preventDefault();
                 const btn = document.getElementById('assoc-btn');
                 if(btn) { btn.disabled = true; btn.innerText = 'Публикуем...'; }
-
                 try {
-                    const assocData = {
-                        recordType: 'association', // Метка для БД
-                        name: document.getElementById('assoc-name').value,
-                        word: document.getElementById('assoc-word').value.toUpperCase(),
-                        ts: new Date().toISOString()
-                    };
+                    const assocData = { name: document.getElementById('assoc-name').value, word: document.getElementById('assoc-word').value.toUpperCase(), ts: new Date().toISOString() };
                     if (useAuth && currentUser) assocData.userId = currentUser.uid;
-
-                    await addDoc(getCollectionRef(), assocData);
-                    
-                    document.getElementById('assoc-name').value = '';
-                    document.getElementById('assoc-word').value = '';
+                    await addDoc(getCollectionRef('associations'), assocData);
+                    document.getElementById('assoc-name').value = ''; document.getElementById('assoc-word').value = '';
                     if(btn) { btn.disabled = false; btn.innerText = 'Отправить еще слово'; }
-                    
-                    // Сразу перезагружаем облако
                     window.loadAssociations();
                 } catch (err) { 
-                    console.error(err);
-                    alert("Ошибка отправки! Проверьте интернет.");
+                    console.error(err); alert("Ошибка отправки! Проверьте интернет.");
                     if(btn) { btn.disabled = false; btn.innerText = 'Отправить слово'; }
                 }
             }
 
-            // 4. Форма Секретного Архива
+            // 4. Секретный Архив
             if (e.target && e.target.id === 'archive-form') {
                 e.preventDefault();
-                if (!window.selectedImageBase64) {
-                    alert("Пожалуйста, выберите фотографию!");
-                    return;
-                }
+                if (!window.selectedImageBase64) { alert("Пожалуйста, выберите фотографию!"); return; }
                 const btn = document.getElementById('archive-btn');
                 if(btn) { btn.disabled = true; btn.innerText = 'Прячем...'; }
-
                 try {
-                    const archiveData = {
-                        recordType: 'archive', // Метка для БД
-                        name: document.getElementById('archive-name').value,
-                        url: window.selectedImageBase64,
-                        desc: document.getElementById('archive-desc').value,
-                        ts: new Date().toISOString()
-                    };
+                    const archiveData = { name: document.getElementById('archive-name').value, url: window.selectedImageBase64, desc: document.getElementById('archive-desc').value, ts: new Date().toISOString() };
                     if (useAuth && currentUser) archiveData.userId = currentUser.uid;
-
-                    await addDoc(getCollectionRef(), archiveData);
-                    
+                    await addDoc(getCollectionRef('archive'), archiveData);
                     document.getElementById('archive-form-div').classList.add('hidden');
                     document.getElementById('archive-success-div').classList.remove('hidden');
                     confetti({ particleCount: 100, spread: 60, origin: { y: 0.6 }, colors: ['#bf953f', '#ffffff'] });
-                    
-                    // Сброс формы
-                    window.selectedImageBase64 = null;
-                    document.getElementById('archive-file-label').innerText = '📸 Выбрать фото на устройстве';
-                    e.target.reset();
-
+                    window.selectedImageBase64 = null; document.getElementById('archive-file-label').innerText = '📸 Выбрать фото на устройстве'; e.target.reset();
                 } catch (err) { 
-                    console.error(err);
-                    alert("Не удалось сохранить фото! Проверьте интернет.");
+                    console.error(err); alert("Не удалось сохранить фото! Проверьте интернет.");
                     if(btn) { btn.disabled = false; btn.innerText = 'Спрятать в сейф'; }
                 }
             }
         });
 
-        // --- Обработка загрузки фото (Сжатие в Base64) ---
+        // --- Загрузка фото в Base64 ---
         window.selectedImageBase64 = null;
         document.getElementById('archive-file').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
-            
             const label = document.getElementById('archive-file-label');
             label.innerText = '⏳ Обработка...';
-            
             const reader = new FileReader();
             reader.onload = function(event) {
                 const img = new Image();
                 img.onload = function() {
                     const canvas = document.createElement('canvas');
-                    const MAX_WIDTH = 800;
-                    const MAX_HEIGHT = 800;
-                    let width = img.width;
-                    let height = img.height;
-
-                    // Умное сжатие пропорций
-                    if (width > height) {
-                        if (width > MAX_WIDTH) {
-                            height *= MAX_WIDTH / width;
-                            width = MAX_WIDTH;
-                        }
-                    } else {
-                        if (height > MAX_HEIGHT) {
-                            width *= MAX_HEIGHT / height;
-                            height = MAX_HEIGHT;
-                        }
-                    }
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, width, height);
-                    
-                    // Конвертация в строку
+                    const MAX_WIDTH = 800; const MAX_HEIGHT = 800;
+                    let width = img.width; let height = img.height;
+                    if (width > height) { if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; } } 
+                    else { if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; } }
+                    canvas.width = width; canvas.height = height;
+                    const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, width, height);
                     window.selectedImageBase64 = canvas.toDataURL('image/jpeg', 0.6);
                     label.innerText = '✅ Фото выбрано (' + file.name.substring(0, 15) + '...)';
                 };
@@ -1238,55 +1177,56 @@
             reader.readAsDataURL(file);
         });
 
-        // --- Загрузка и Рендер Облака Слов ---
+        // --- Облако Слов ---
         window.loadAssociations = async () => {
             if (useAuth && !currentUser) return;
             const container = document.getElementById('word-cloud-container');
             container.innerHTML = '<p class="opacity-50 text-sm">Загрузка ассоциаций...</p>';
-            
             try {
-                const querySnapshot = await getDocs(getCollectionRef());
+                const querySnapshot = await getDocs(getCollectionRef('associations')); 
                 container.innerHTML = '';
-                
                 const sizes = ['text-xl', 'text-2xl', 'text-3xl', 'text-4xl', 'text-5xl'];
-                // Теперь все слова белые, можно добавить легкую прозрачность для глубины, но базовый цвет один
                 const colors = ['text-white', 'text-white/90', 'text-white/80', 'text-white/70'];
-                
                 let count = 0;
                 querySnapshot.forEach((docSnap) => {
                     const data = docSnap.data();
-                    if (data.recordType !== 'association') return; // ФИЛЬТР: берем только слова
-                    
                     const wordEl = document.createElement('span');
-                    
-                    // Случайный стиль для эффекта облака
                     const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
                     const randomColor = colors[Math.floor(Math.random() * colors.length)];
                     const randomDelay = Math.random() * 2 + 's';
-                    
-                    wordEl.className = `word-cloud-item font-bold title-font ${randomSize} ${randomColor} drop-shadow-lg p-2`;
+                    wordEl.className = `word-cloud-item font-bold title-font ${randomSize} ${randomColor} drop-shadow-lg p-2 cursor-default hover:scale-110 transition-transform`;
                     wordEl.style.animationDelay = randomDelay;
                     wordEl.innerText = data.word;
                     wordEl.title = `От: ${data.name}`;
-                    
                     container.appendChild(wordEl);
                     count++;
                 });
-
-                if (count === 0) {
-                    container.innerHTML = '<p class="opacity-50 text-sm">Вы будете первым! Напишите слово выше.</p>';
-                }
+                if (count === 0) container.innerHTML = '<p class="opacity-50 text-sm">Вы будете первым! Напишите слово выше.</p>';
             } catch (err) {
-                console.error(err);
-                container.innerHTML = '<p class="text-red-500/50 text-sm">Ошибка загрузки слов</p>';
+                console.error(err); container.innerHTML = '<p class="text-red-500/50 text-sm">Ошибка загрузки слов</p>';
             }
         };
 
-        // Логика Админки
+        // --- ЛОГИКА ЗАЩИТЫ АДМИНКИ ---
+        let currentAdminLevel = null;
+
         window.checkAdminPassword = () => {
-            if(document.getElementById('admin-password').value === "1234") {
+            const pwd = document.getElementById('admin-password').value;
+            
+            if (pwd === "1234" || pwd === "1111") {
                 closeModal('auth-modal');
-                window.switchAdminTab('guests'); // Открываем вкладку гостей по умолчанию
+                currentAdminLevel = pwd; // Сохраняем уровень доступа
+                
+                if (pwd === "1111") {
+                    // СУПЕР-АДМИН: Показываем кнопку архива и открываем его
+                    document.getElementById('tab-btn-archive').style.display = 'inline-block';
+                    window.switchAdminTab('archive'); 
+                } else {
+                    // ОБЫЧНЫЙ АДМИН: Прячем кнопку архива и открываем гостей
+                    document.getElementById('tab-btn-archive').style.display = 'none';
+                    window.switchAdminTab('guests'); 
+                }
+                
                 openModal('admin-modal');
                 document.getElementById('admin-password').value = '';
                 document.getElementById('auth-error').classList.add('hidden');
@@ -1296,6 +1236,11 @@
         };
 
         window.switchAdminTab = (tab) => {
+            // ЗАЩИТА: Запрещаем открывать архив, если пароль не 1111
+            if (tab === 'archive' && currentAdminLevel !== "1111") {
+                return;
+            }
+
             const tabs = ['guests', 'archive'];
             tabs.forEach(t => {
                 const tabEl = document.getElementById(`admin-tab-${t}`);
@@ -1304,6 +1249,7 @@
                     tabEl.classList.remove('block');
                 }
                 const btnEl = document.getElementById(`tab-btn-${t}`);
+                // ВАЖНО: Сбрасываем классы, но НЕ стираем style="display: none"
                 if(btnEl) btnEl.className = "px-4 py-2 rounded-lg bg-transparent text-white/70 hover:bg-white/5 font-bold text-xs md:text-sm uppercase tracking-wider border border-white/20 transition-colors";
             });
 
@@ -1319,68 +1265,55 @@
             if (tab === 'archive') window.renderArchiveList();
         };
 
+        // --- РЕНДЕР АРХИВА В АДМИНКЕ ---
         window.renderArchiveList = async () => {
             if (useAuth && !currentUser) return;
             const container = document.getElementById('archive-list');
             container.innerHTML = '<p class="p-8 text-center opacity-50 italic col-span-full">Загрузка фотоархива...</p>';
             try {
-                const querySnapshot = await getDocs(getCollectionRef());
+                const querySnapshot = await getDocs(getCollectionRef('archive')); 
                 container.innerHTML = '';
-                
                 let count = 0;
                 querySnapshot.forEach((cDoc) => {
                     const data = cDoc.data();
-                    if (data.recordType !== 'archive') return; // ФИЛЬТР: только архивные фото
-                    
                     const card = document.createElement('div');
                     card.className = 'glass-card p-3 border border-yellow-500/20 relative group overflow-hidden flex flex-col';
-                    
                     card.innerHTML = `
-                        <div class="aspect-video w-full mb-3 rounded-lg overflow-hidden bg-black/50">
-                            <img src="${data.url}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x200?text=Ошибка+загрузки'">
+                        <div class="aspect-video w-full mb-3 rounded-lg overflow-hidden bg-black/50 cursor-pointer" onclick="openImageViewer('${data.url}')" title="Нажмите, чтобы увеличить">
+                            <img src="${data.url}" class="w-full h-full object-cover hover:scale-105 transition-transform" onerror="this.src='https://via.placeholder.com/300x200?text=Ошибка+загрузки'">
                         </div>
                         <h4 class="font-bold text-yellow-500 text-sm mb-1">${data.name}</h4>
                         <p class="text-xs text-white/90 italic flex-grow">«${data.desc}»</p>
                         <button class="absolute top-2 right-2 bg-red-500/80 text-white rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-sm hover:bg-red-500" data-id="${cDoc.id}">✕</button>
                     `;
-                    
                     card.querySelector('button').onclick = async () => {
                         if(confirm('Удалить это фото из архива?')) { 
-                            let path = dbPath;
+                            let path = getCollectionPath('archive');
                             if (path.includes('/')) {
-                                const parts = path.split('/');
-                                await deleteDoc(doc(db, parts[0], parts[1], parts[2], parts[3], parts[4], cDoc.id)); 
-                            } else {
-                                await deleteDoc(doc(db, path, cDoc.id));
-                            }
+                                const parts = path.split('/'); await deleteDoc(doc(db, parts[0], parts[1], parts[2], parts[3], parts[4], cDoc.id)); 
+                            } else { await deleteDoc(doc(db, path, cDoc.id)); }
                             window.renderArchiveList(); 
                         }
                     };
                     container.appendChild(card);
                     count++;
                 });
-                
-                if (count === 0) {
-                    container.innerHTML = '<p class="p-8 text-center opacity-50 col-span-full">Архив пуст. Гости пока не загрузили фото.</p>';
-                }
+                if (count === 0) container.innerHTML = '<p class="p-8 text-center opacity-50 col-span-full">Архив пуст. Гости пока не загрузили фото.</p>';
             } catch (err) { 
-                container.innerHTML = '<p class="p-8 text-center text-red-400 col-span-full">Ошибка соединения с БД</p>'; 
-                console.error(err);
+                container.innerHTML = '<p class="p-8 text-center text-red-400 col-span-full">Ошибка соединения с БД</p>'; console.error(err);
             }
         };
 
+        // --- РЕНДЕР ГОСТЕЙ В АДМИНКЕ ---
         window.renderGuestList = async () => {
             if (useAuth && !currentUser) return;
             const tbody = document.querySelector('#guests-list tbody');
             tbody.innerHTML = '<tr><td colspan="3" class="p-8 text-center opacity-50 italic">Загрузка данных...</td></tr>';
             try {
-                const querySnapshot = await getDocs(getCollectionRef());
+                const querySnapshot = await getDocs(getCollectionRef('guests')); 
                 tbody.innerHTML = '';
-                
                 querySnapshot.forEach((gDoc) => {
                     const data = gDoc.data();
-                    if (data.recordType && data.recordType !== 'rsvp') return; // ФИЛЬТР: показываем только гостей
-                    
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td class="p-4 font-bold text-white/90">${data.name}</td>
@@ -1389,25 +1322,18 @@
                     `;
                     row.querySelector('button').onclick = async () => {
                         if(confirm('Удалить гостя из списка?')) { 
-                            let path = dbPath;
+                            let path = getCollectionPath('guests');
                             if (path.includes('/')) {
-                                const parts = path.split('/');
-                                await deleteDoc(doc(db, parts[0], parts[1], parts[2], parts[3], parts[4], gDoc.id)); 
-                            } else {
-                                await deleteDoc(doc(db, path, gDoc.id));
-                            }
+                                const parts = path.split('/'); await deleteDoc(doc(db, parts[0], parts[1], parts[2], parts[3], parts[4], gDoc.id)); 
+                            } else { await deleteDoc(doc(db, path, gDoc.id)); }
                             renderGuestList(); 
                         }
                     };
                     tbody.appendChild(row);
                 });
-                
-                if (tbody.innerHTML === '') {
-                    tbody.innerHTML = '<tr><td colspan="3" class="p-8 text-center opacity-50">Список пока пуст</td></tr>';
-                }
+                if (tbody.innerHTML === '') tbody.innerHTML = '<tr><td colspan="3" class="p-8 text-center opacity-50">Список пока пуст</td></tr>';
             } catch (err) { 
-                tbody.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-red-400">Ошибка соединения с БД</td></tr>'; 
-                console.error(err);
+                tbody.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-red-400">Ошибка соединения с БД</td></tr>'; console.error(err);
             }
         };
     </script>
